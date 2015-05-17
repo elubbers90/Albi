@@ -1,18 +1,20 @@
+
 package com.alfamarkt.albi;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
+import android.media.*;
+import android.media.Image;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.File;
+import com.alfamarkt.albi.classes.Rack;
+import com.alfamarkt.albi.classes.Shelf;
+import com.alfamarkt.albi.classes.StorePlanogram;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import jxl.*;
@@ -26,7 +28,8 @@ public class MainActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         try {
-            List<String> result = loadXML("planogram25032015.xls");
+            List<List<String>> result = loadXML("planogram25032015.xls");
+            StorePlanogram store = parseXML(result);
             if(!result.isEmpty()) {
                 Button startButton = (Button) findViewById(R.id.btnStartGame);
                 startButton.setVisibility(View.VISIBLE);
@@ -36,9 +39,62 @@ public class MainActivity extends Activity{
         }
     }
 
-    public List<String> loadXML(String inputFile) throws IOException {
-        List<String> resultSet = new ArrayList<>();
+    public StorePlanogram parseXML(List<List<String>> xml){
+        StorePlanogram store = new StorePlanogram(0);
+        List<Rack> racks = new ArrayList<>();
+        List<Shelf> shelves = new ArrayList<>();
+        for(int i=0;i<xml.size();i++){
+            List<String> row = xml.get(i);
+            String firstCell = row.get(0);
+            if(firstCell.equals("PLANOGRAM")) {
+                store.setLocation(parseStoreLocation(row));
+            } else if(firstCell.contains("Class Store")){
+                store.setClassStore(parseClassStore(firstCell));
+            } else if(firstCell.contains("Nomor Rak")){
+                racks.add(parseRack(firstCell, racks.size()));
+            } else if(!firstCell.equals("") && !firstCell.equals("Shv")){
+                Shelf shelf = parseShelf(firstCell);
+                shelf.addItem(parseItem(row));
+                shelves.add(shelf);
+                racks.get(racks.size()-1).addShelf(shelf);
+            }
+        }
+        return store;
+    }
 
+    private String parseStoreLocation(List<String> row) {
+        for(int i=0;i<row.size();i++){
+            String cell = row.get(i);
+            if(cell!=null && !cell.equals("PLANOGRAM") && !cell.equals("")){
+                return cell;
+            }
+        }
+        return "";
+    }
+
+    private String parseClassStore(String firstCell) {
+        String[] splitted = firstCell.split(":");
+        if(splitted.length==2){
+            return splitted[1].substring(1,splitted [1].length());
+        }
+        return "";
+    }
+
+    private Rack parseRack(String firstCell, int id) {
+        Rack rack = new Rack(id);
+        String[] split1 = firstCell.split(":");
+        if(split1.length==2) {
+            String[] split2 = split1[1].split("-");
+            if (split2.length == 2) {
+                rack.setNumber(Integer.parseInt(split2[0].replace(" ","")));
+                rack.setType(split2[1].substring(1,split2[1].length()));
+            }
+        }
+        return rack;
+    }
+
+    public List<List<String>> loadXML(String inputFile) throws IOException {
+        List<List<String>> result = new ArrayList<>();
         InputStream in = getAssets().open(inputFile);
 
         if (in!=null){
@@ -49,42 +105,17 @@ public class MainActivity extends Activity{
                 Sheet sheet = w.getSheet(0);
                 // Loop over column and lines
                 for (int j = 0; j < sheet.getRows(); j++) {
+                    List<String> row = new ArrayList<>();
                     for (int i = 0; i < sheet.getColumns(); i++) {
                         Cell cel = sheet.getCell(i, j);
-                        resultSet.add(cel.getContents());
+                        row.add(cel.getContents());
                     }
+                    result.add(row);
                 }
             } catch (BiffException e) {
                 e.printStackTrace();
             }
-        } else {
-            resultSet.add("File not found..!");
         }
-        if (resultSet.size() == 0) {
-            resultSet.add("Data not found..!");
-        }
-        return resultSet;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return result;
     }
 }
