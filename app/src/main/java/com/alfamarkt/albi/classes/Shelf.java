@@ -1,5 +1,9 @@
 package com.alfamarkt.albi.classes;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,8 +56,41 @@ public class Shelf {
 
     public void addItem(Item item){
         if(this.items==null){
-            this.items=new ArrayList<>();
+            this.items=new ArrayList<Item>();
         }
         this.items.add(item);
     }
+    public String toString(){
+        String result = "{\"id\":";
+        result+=id;
+        result+=",\"number\":";
+        result+=number;
+        result+=",\"items\":[";
+        for(int i=0;i<items.size();i++){
+            if(i!=0){
+                result+=",";
+            }
+            result+=items.get(i).toString();
+        }
+        result+="]}";
+        return result;
+    }
+
+    public static List<Shelf> jsonToShelves(JSONArray json){
+        List<Shelf> shelves = new ArrayList<Shelf>();
+        for(int i=0;i<json.length();i++) {
+            Shelf shelf = new Shelf();
+            try {
+                JSONObject jsonObject = json.getJSONObject(i);
+                shelf.setId(jsonObject.getInt("id"));
+                shelf.setNumber(jsonObject.getInt("number"));
+                shelf.setItems(Item.jsonToItems(jsonObject.getJSONArray("items")));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            shelves.add(shelf);
+        }
+        return shelves;
+    }
+
 }

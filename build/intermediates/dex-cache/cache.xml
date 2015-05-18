@@ -2,46 +2,25 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Erik\AndroidStudioProjects\Albi\app\libs\android-support-4.0.jar"
+        jar="C:\Program Files (x86)\Android\android-sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="fcbf4461f540d9e6f19cb94b3b3e8207e42f9a71">
-        <dex dex="C:\Users\Erik\AndroidStudioProjects\Albi\app\build\intermediates\pre-dexed\debug\android-support-4.0-0dc66a68dd3354b0b6b49842e761e9102921b700.jar" />
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="C:\Users\Ansem\AndroidstudioProjects\Albi\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-c30e376a8a37b42530721aa3276156097e39d8df.jar" />
     </item>
     <item
-        jar="C:\Users\Erik\AndroidStudioProjects\Albi\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\libs\internal_impl-22.1.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="C:\Users\Erik\AndroidStudioProjects\Albi\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-01568b4cd3b166cdef0badb3bee31accdbc0503d.jar" />
-    </item>
-    <item
-        jar="C:\Users\Erik\AndroidStudioProjects\Albi\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="C:\Users\Erik\AndroidStudioProjects\Albi\app\build\intermediates\pre-dexed\debug\classes-4cc7b259ecde36da666120b54546d016f89c1bbd.jar" />
-    </item>
-    <item
-        jar="C:\Users\Erik\AndroidStudioProjects\Albi\app\libs\jxl.jar"
+        jar="C:\Users\Ansem\AndroidstudioProjects\Albi\app\libs\jxl.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="7faf62e0697f7a88954622dfe8c8de33ed142ac7">
-        <dex dex="C:\Users\Erik\AndroidStudioProjects\Albi\app\build\intermediates\pre-dexed\debug\jxl-68ed00de1d11e6e6b3e34062294681b0cc23b0b6.jar" />
+        <dex dex="C:\Users\Ansem\AndroidstudioProjects\Albi\app\build\intermediates\pre-dexed\debug\jxl-9de587bb8214306449460814f11fb80caa5bb9c2.jar" />
     </item>
     <item
-        jar="C:\Users\Erik\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jar="C:\Users\Ansem\AndroidstudioProjects\Albi\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="C:\Users\Erik\AndroidStudioProjects\Albi\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-dfa8d619c353394f6b5a3354dbda552781d86b9a.jar" />
-    </item>
-    <item
-        jar="C:\Users\Erik\AndroidStudioProjects\Albi\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="C:\Users\Erik\AndroidStudioProjects\Albi\app\build\intermediates\pre-dexed\debug\classes-304fa4086b86c8ab310beb2635a6806b63548093.jar" />
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="C:\Users\Ansem\AndroidstudioProjects\Albi\app\build\intermediates\pre-dexed\debug\classes-ca48815aefe1106f69055f47fe53072c7f4dfe4f.jar" />
     </item>
 
 </items>

@@ -1,5 +1,12 @@
 package com.alfamarkt.albi.classes;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Erik on 5/7/2015.
  */
@@ -13,6 +20,12 @@ public class Item {
     public String description;
     public int tierKK;
     public int tierDB;
+    public int tierAB;
+    public int capacity;
+    public int minDisplay;
+    public int stock;
+    public String tag;
+    public String cls;
 
     public Item() {
     }
@@ -161,10 +174,67 @@ public class Item {
         this.cls = cls;
     }
 
-    public int tierAB;
-    public int capacity;
-    public int minDisplay;
-    public int stock;
-    public String tag;
-    public String cls;
+    public String toString(){
+        String result = "{\"id\":";
+        result+=id;
+        result+=",\"hole\":";
+        result+=hole;
+        result+=",\"subDept\":";
+        result+=subDept;
+        result+=",\"position\":\"";
+        result+=position;
+        result+="\",\"noUrut\":";
+        result+=noUrut;
+        result+=",\"sku\":";
+        result+=sku;
+        result+=",\"description\":\"";
+        result+=description.replace("\"","\'");
+        result+="\",\"tierKK\":";
+        result+=tierKK;
+        result+=",\"tierDB\":";
+        result+=tierDB;
+        result+=",\"tierAB\":";
+        result+=tierAB;
+        result+=",\"capacity\":";
+        result+=capacity;
+        result+=",\"minDisplay\":";
+        result+=minDisplay;
+        result+=",\"stock\":\"";
+        result+=stock;
+        result+="\",\"tag\":\"";
+        result+=tag;
+        result+="\",\"cls\":\"";
+        result+=cls;
+        result+="\"}";
+        return result;
+    }
+
+    public static List<Item> jsonToItems(JSONArray json){
+        List<Item> items = new ArrayList<Item>();
+        for(int i=0;i<json.length();i++) {
+            Item item = new Item();
+            try {
+                JSONObject jsonObject = json.getJSONObject(i);
+                item.setId(jsonObject.getInt("id"));
+                item.setHole(jsonObject.getInt("hole"));
+                item.setSubDept(jsonObject.getInt("subDept"));
+                item.setPosition(jsonObject.getString("position"));
+                item.setNoUrut(jsonObject.getInt("noUrut"));
+                item.setSku(jsonObject.getInt("sku"));
+                item.setDescription(jsonObject.getString("description"));
+                item.setTierKK(jsonObject.getInt("tierKK"));
+                item.setTierDB(jsonObject.getInt("tierDB"));
+                item.setTierAB(jsonObject.getInt("tierAB"));
+                item.setCapacity(jsonObject.getInt("capacity"));
+                item.setMinDisplay(jsonObject.getInt("minDisplay"));
+                item.setStock(jsonObject.getInt("stock"));
+                item.setTag(jsonObject.getString("tag"));
+                item.setCls(jsonObject.getString("cls"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            items.add(item);
+        }
+        return items;
+    }
 }

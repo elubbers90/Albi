@@ -1,5 +1,8 @@
 package com.alfamarkt.albi.classes;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 /**
@@ -59,5 +62,36 @@ public class StorePlanogram {
     public StorePlanogram(int id) {
 
         this.id = id;
+    }
+
+    public String toString(){
+        String result = "{\"id\":";
+        result+=id;
+        result+=",\"location\":\"";
+        result+=location;
+        result+="\",\"classStore\":\"";
+        result+=classStore;
+        result+="\",\"racks\":[";
+        for(int i=0;i<racks.size();i++){
+            if(i!=0){
+                result+=",";
+            }
+            result+=racks.get(i).toString();
+        }
+        result+="]}";
+        return result;
+    }
+
+    public static StorePlanogram jsonToStore(JSONObject json){
+        StorePlanogram storePlanogram = new StorePlanogram();
+        try {
+            storePlanogram.setId(json.getInt("id"));
+            storePlanogram.setLocation(json.getString("location"));
+            storePlanogram.setClassStore(json.getString("classStore"));
+            storePlanogram.setRacks(Rack.jsonToRack(json.getJSONArray("racks")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return storePlanogram;
     }
 }

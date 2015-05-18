@@ -1,5 +1,9 @@
 package com.alfamarkt.albi.classes;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +67,45 @@ public class Rack {
 
     public void addShelf(Shelf shelf) {
         if(this.shelves==null){
-            this.shelves=new ArrayList<>();
+            this.shelves=new ArrayList<Shelf>();
         }
         this.shelves.add(shelf);
     }
+
+    public String toString(){
+        String result = "{\"id\":";
+        result+=id;
+        result+=",\"number\":";
+        result+=number;
+        result+=",\"type\":\"";
+        result+=type;
+        result+="\",\"shelves\":[";
+        for(int i=0;i<shelves.size();i++){
+            if(i!=0){
+                result+=",";
+            }
+            result+=shelves.get(i).toString();
+        }
+        result+="]}";
+        return result;
+    }
+
+    public static List<Rack> jsonToRack(JSONArray json){
+        List<Rack> racks = new ArrayList<Rack>();
+        for(int i=0;i<json.length();i++) {
+            Rack rack = new Rack();
+            try {
+                JSONObject jsonObject = json.getJSONObject(i);
+                rack.setId(jsonObject.getInt("id"));
+                rack.setNumber(jsonObject.getInt("number"));
+                rack.setType(jsonObject.getString("type"));
+                rack.setShelves(Shelf.jsonToShelves(jsonObject.getJSONArray("shelves")));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            racks.add(rack);
+        }
+        return racks;
+    }
+
 }

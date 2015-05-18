@@ -4,27 +4,17 @@
     android:layout_height="fill_parent">
 
     <ImageView
-        android:id="@+id/albilogo"
+        android:id="@+id/albilogo2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/albilogo" />
 
     <RelativeLayout
-        android:id="@+id/InnerRelativeLayout"
+        android:id="@+id/InnerRelativeLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/btnStartGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start Game"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:onClick="playGame"/>
 
 </RelativeLayout>
