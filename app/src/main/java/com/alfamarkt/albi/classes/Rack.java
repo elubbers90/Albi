@@ -15,6 +15,7 @@ public class Rack {
     public int number;
     public String type;
     public List<Shelf> shelves;
+    public Boolean checked;
 
     public int getId() {
         return id;
@@ -48,16 +49,25 @@ public class Rack {
         this.shelves = shelves;
     }
 
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
     public Rack() {
 
     }
 
-    public Rack(int id, int number, String type, List<Shelf> shelves) {
+    public Rack(int id, int number, String type, List<Shelf> shelves, Boolean checked) {
 
         this.id = id;
         this.number = number;
         this.type = type;
         this.shelves = shelves;
+        this.checked=checked;
     }
 
     public Rack(int id) {
@@ -79,7 +89,9 @@ public class Rack {
         result+=number;
         result+=",\"type\":\"";
         result+=type;
-        result+="\",\"shelves\":[";
+        result+="\",\"checked\":";
+        result+=checked;
+        result+=",\"shelves\":[";
         for(int i=0;i<shelves.size();i++){
             if(i!=0){
                 result+=",";
@@ -100,6 +112,7 @@ public class Rack {
                 rack.setNumber(jsonObject.getInt("number"));
                 rack.setType(jsonObject.getString("type"));
                 rack.setShelves(Shelf.jsonToShelves(jsonObject.getJSONArray("shelves")));
+                rack.setChecked(jsonObject.getBoolean("checked"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

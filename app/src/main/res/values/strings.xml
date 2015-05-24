@@ -5,5 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_game_item_picker">GameItemPicker</string>
+    <string name="title_activity_game_restocker">GameRestocker</string>
 
 </resources>

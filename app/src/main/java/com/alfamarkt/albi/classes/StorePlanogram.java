@@ -14,6 +14,7 @@ public class StorePlanogram {
     public String location;
     public String classStore;
     public List<Rack> racks;
+    public Boolean checked;
 
     public int getId() {
         return id;
@@ -47,16 +48,25 @@ public class StorePlanogram {
         this.racks = racks;
     }
 
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
     public StorePlanogram() {
 
     }
 
-    public StorePlanogram(int id, String location, String classStore, List<Rack> racks) {
+    public StorePlanogram(int id, String location, String classStore, List<Rack> racks, Boolean checked) {
 
         this.id = id;
         this.location = location;
         this.classStore = classStore;
         this.racks = racks;
+        this.checked=checked;
     }
 
     public StorePlanogram(int id) {
@@ -71,7 +81,9 @@ public class StorePlanogram {
         result+=location;
         result+="\",\"classStore\":\"";
         result+=classStore;
-        result+="\",\"racks\":[";
+        result+="\",\"checked\":";
+        result+=checked;
+        result+=",\"racks\":[";
         for(int i=0;i<racks.size();i++){
             if(i!=0){
                 result+=",";
@@ -89,6 +101,7 @@ public class StorePlanogram {
             storePlanogram.setLocation(json.getString("location"));
             storePlanogram.setClassStore(json.getString("classStore"));
             storePlanogram.setRacks(Rack.jsonToRack(json.getJSONArray("racks")));
+            storePlanogram.setChecked(json.getBoolean("checked"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

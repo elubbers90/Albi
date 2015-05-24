@@ -48,6 +48,7 @@ public class MainActivity extends Activity{
 
     public StorePlanogram parseXML(List<List<String>> xml){
         StorePlanogram store = new StorePlanogram(0);
+        store.setChecked(false);
         List<Rack> racks = new ArrayList<Rack>();
         List<Shelf> shelves = new ArrayList<Shelf>();
         List<Item> items = new ArrayList<Item>();
@@ -118,6 +119,7 @@ public class MainActivity extends Activity{
 
     private Rack parseRack(String firstCell, int id) {
         Rack rack = new Rack(id);
+        rack.setChecked(false);
         String[] split1 = firstCell.split(":");
         if(split1.length==2) {
             String[] split2 = split1[1].split("-");
@@ -166,7 +168,7 @@ public class MainActivity extends Activity{
             SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("com.alfamarkt.albi.storeString",storeString);
-            editor.commit();
+            editor.apply();
         }
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);

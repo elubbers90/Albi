@@ -26,6 +26,8 @@ public class Item {
     public int stock;
     public String tag;
     public String cls;
+    public Boolean checked=false;
+    public Boolean correct=false;
 
     public Item() {
     }
@@ -35,7 +37,7 @@ public class Item {
         this.id = id;
     }
 
-    public Item(int id, int hole, int subDept, String position, int noUrut, int sku, String description, int tierKK, int tierDB, int tierAB, int capacity, int minDisplay, int stock, String tag, String cls) {
+    public Item(int id, int hole, int subDept, String position, int noUrut, int sku, String description, int tierKK, int tierDB, int tierAB, int capacity, int minDisplay, int stock, String tag, String cls, boolean checked, Boolean correct) {
         this.id = id;
         this.hole = hole;
         this.subDept = subDept;
@@ -51,6 +53,8 @@ public class Item {
         this.stock = stock;
         this.tag = tag;
         this.cls = cls;
+        this.checked = checked;
+        this.correct = correct;
     }
 
     public int getId() {
@@ -174,6 +178,22 @@ public class Item {
         this.cls = cls;
     }
 
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
+    public Boolean getCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(Boolean correct) {
+        this.correct = correct;
+    }
+
     public String toString(){
         String result = "{\"id\":";
         result+=id;
@@ -205,7 +225,11 @@ public class Item {
         result+=tag;
         result+="\",\"cls\":\"";
         result+=cls;
-        result+="\"}";
+        result+="\",\"checked\":";
+        result+=checked;
+        result+=",\"correct\":";
+        result+=correct;
+        result+="}";
         return result;
     }
 
@@ -230,6 +254,8 @@ public class Item {
                 item.setStock(jsonObject.getInt("stock"));
                 item.setTag(jsonObject.getString("tag"));
                 item.setCls(jsonObject.getString("cls"));
+                item.setChecked(jsonObject.getBoolean("checked"));
+                item.setCorrect(jsonObject.getBoolean("correct"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
