@@ -24,10 +24,12 @@ public class Item {
     public int capacity;
     public int minDisplay;
     public int stock;
+    public int inventory = -1;
     public String tag;
     public String cls;
     public Boolean checked=false;
-    public Boolean correct=false;
+    public Boolean onDisplay =false;
+    public Boolean restocked=false;
 
     public Item() {
     }
@@ -37,7 +39,7 @@ public class Item {
         this.id = id;
     }
 
-    public Item(int id, int hole, int subDept, String position, int noUrut, int sku, String description, int tierKK, int tierDB, int tierAB, int capacity, int minDisplay, int stock, String tag, String cls, boolean checked, Boolean correct) {
+    public Item(int id, int hole, int subDept, String position, int noUrut, int sku, String description, int tierKK, int tierDB, int tierAB, int capacity, int minDisplay, int stock, String tag, String cls, Boolean checked, Boolean onDisplay, Boolean restocked, int inventory) {
         this.id = id;
         this.hole = hole;
         this.subDept = subDept;
@@ -54,7 +56,9 @@ public class Item {
         this.tag = tag;
         this.cls = cls;
         this.checked = checked;
-        this.correct = correct;
+        this.onDisplay = onDisplay;
+        this.restocked = restocked;
+        this.inventory = inventory;
     }
 
     public int getId() {
@@ -146,6 +150,14 @@ public class Item {
         this.capacity = capacity;
     }
 
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
+    }
+
     public int getMinDisplay() {
         return minDisplay;
     }
@@ -186,12 +198,20 @@ public class Item {
         this.checked = checked;
     }
 
-    public Boolean getCorrect() {
-        return correct;
+    public Boolean getOnDisplay() {
+        return onDisplay;
     }
 
-    public void setCorrect(Boolean correct) {
-        this.correct = correct;
+    public void setOnDisplay(Boolean onDisplay) {
+        this.onDisplay = onDisplay;
+    }
+
+    public Boolean getRestocked() {
+        return restocked;
+    }
+
+    public void setRestocked(Boolean restocked) {
+        this.restocked = restocked;
     }
 
     public String toString(){
@@ -217,6 +237,8 @@ public class Item {
         result+=tierAB;
         result+=",\"capacity\":";
         result+=capacity;
+        result+=",\"inventory\":";
+        result+=inventory;
         result+=",\"minDisplay\":";
         result+=minDisplay;
         result+=",\"stock\":\"";
@@ -227,8 +249,10 @@ public class Item {
         result+=cls;
         result+="\",\"checked\":";
         result+=checked;
-        result+=",\"correct\":";
-        result+=correct;
+        result+=",\"onDisplay\":";
+        result+= onDisplay;
+        result+=",\"restocked\":";
+        result+=restocked;
         result+="}";
         return result;
     }
@@ -250,12 +274,14 @@ public class Item {
                 item.setTierDB(jsonObject.getInt("tierDB"));
                 item.setTierAB(jsonObject.getInt("tierAB"));
                 item.setCapacity(jsonObject.getInt("capacity"));
+                item.setInventory(jsonObject.getInt("inventory"));
                 item.setMinDisplay(jsonObject.getInt("minDisplay"));
                 item.setStock(jsonObject.getInt("stock"));
                 item.setTag(jsonObject.getString("tag"));
                 item.setCls(jsonObject.getString("cls"));
                 item.setChecked(jsonObject.getBoolean("checked"));
-                item.setCorrect(jsonObject.getBoolean("correct"));
+                item.setOnDisplay(jsonObject.getBoolean("onDisplay"));
+                item.setRestocked(jsonObject.getBoolean("restocked"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

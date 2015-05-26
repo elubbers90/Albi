@@ -6,24 +6,24 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:scrollbars="none"
-        android:layout_weight="1">
+        android:layout_above="@+id/btnNextStep">
         <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id = "@+id/itemsTable"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="5dp">
 
             <TableRow android:layout_height="match_parent"
                 android:layout_width="match_parent">
                 <TextView
                     android:id="@+id/sku"
-                    android:text="SKU"
+                    android:text="@string/sku"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     />
                 <TextView
                     android:id="@+id/item"
-                    android:text="Item"
+                    android:text="@string/item"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     />
@@ -31,31 +31,14 @@
 
         </TableLayout>
     </ScrollView>
-    <RelativeLayout
-        android:id="@+id/InnerRelativeLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
-    </RelativeLayout>
 
     <Button
         android:id="@+id/btnNextStep"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Next Step"
+        android:text="@string/nextStep"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="playGame"/>
-
-    <Button
-        android:id="@+id/btnFixDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fix Display"
-        android:visibility="invisible"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="fixDisplay"/>
 
 </RelativeLayout>

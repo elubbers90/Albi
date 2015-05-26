@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -70,27 +69,8 @@ public class GameActivity extends Activity {
                     name.setText(item.getDescription());
                     newRow.addView(sku);
                     newRow.addView(name);
-                    if (item.getChecked()) {
-                        if (item.getCorrect()) {
-                            // the item is correct, do nothing
-                        } else {
-                            // item is not on display. show red color.
-                            sku.setTextColor(Color.RED);
-                            name.setTextColor(Color.RED);
-                            tbl.addView(newRow);
-                        }
-                    } else {
-                        // item has not been checked yet, game needs to be played, show item
-                        tbl.addView(newRow);
-                    }
-
+                    tbl.addView(newRow);
                 }
-            }
-            if(store.getChecked()){
-                Button playGame = (Button) findViewById(R.id.btnNextStep);
-                playGame.setVisibility(View.INVISIBLE);
-                Button fixDisplay = (Button) findViewById(R.id.btnFixDisplay);
-                fixDisplay.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -127,9 +107,10 @@ public class GameActivity extends Activity {
             Intent intent = new Intent(this, GameItemPicker.class);
             intent.putExtra("rackIndex", rackIndex);
             startActivity(intent);
+            finish();
         }
     }
-
+/*
     public void fixDisplay(View view){
         if(store!=null && rackIndex!=-1 && store.getChecked()) {
             SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
@@ -140,7 +121,7 @@ public class GameActivity extends Activity {
             intent.putExtra("rackIndex", rackIndex);
             startActivity(intent);
         }
-    }
+    }*/
 
     @Override
     public void onResume() {

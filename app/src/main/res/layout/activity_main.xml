@@ -9,19 +9,11 @@
         android:layout_height="match_parent"
         android:src="@drawable/albilogo" />
 
-    <RelativeLayout
-        android:id="@+id/InnerRelativeLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
-    </RelativeLayout>
-
     <Button
         android:id="@+id/btnStartGame"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Start Game"
+        android:text="@string/startGame"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"

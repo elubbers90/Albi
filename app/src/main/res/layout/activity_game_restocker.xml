@@ -3,16 +3,52 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <TextView android:text="" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/itemTextRestocked" />
+    <TextView android:text="@string/fixDisplay" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/fixDisplayHeader" />
+
+    <TextView android:text="@string/pleaseDisplayTheFollowing" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/fixDisplayText"
+        android:layout_below="@+id/fixDisplayHeader"/>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        android:layout_below="@+id/fixDisplayText"
+        android:layout_above="@+id/btnFixDisplay">
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id = "@+id/fixItemsTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TableRow android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:id="@+id/sku"
+                    android:text="@string/product"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/item"
+                    android:text="@string/inventory"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
 
     <Button
-        android:id="@+id/btnRestocked"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnFixDisplay"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Restocked"
+        android:text="@string/submitFixedDisplay"
+        android:enabled="false"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="restocked"/>
+        android:onClick="fixDisplay"/>
 
 </RelativeLayout>

@@ -12,6 +12,7 @@
     <android:uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -29,14 +30,14 @@
         </activity>
         <activity
             android:name=".GameActivity"
-            android:label="@string/title_activity_game">
+            android:label="@string/title_activity_game" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.alfamarkt.albi.MainActivity" />
         </activity>
         <activity
             android:name=".GameItemPicker"
-            android:label="@string/title_activity_game_item_picker">
+            android:label="@string/title_activity_game_item_picker" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.alfamarkt.albi.GameActivity" />
@@ -44,6 +45,18 @@
         <activity
             android:name=".GameRestocker"
             android:label="@string/title_activity_game_restocker" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alfamarkt.albi.GameActivity" />
+        </activity>
+        <activity
+            android:name=".GameSummary"
+            android:label="@string/title_activity_game_summary" >
+        </activity>
+        <activity
+            android:name=".GameComplete"
+            android:label="@string/title_activity_game_complete"
+            android:parentActivityName=".GameActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.alfamarkt.albi.GameActivity" />

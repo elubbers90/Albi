@@ -3,7 +3,6 @@ package com.alfamarkt.albi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,9 +16,6 @@ import com.alfamarkt.albi.classes.StorePlanogram;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class GameItemPicker extends Activity {
     private StorePlanogram store;
@@ -27,6 +23,8 @@ public class GameItemPicker extends Activity {
     private Boolean incorrectItems = false;
     private int shelfIndex = 0;
     private int itemIndex = 0;
+    private int rackIndex = -1;
+    private Boolean gameFinished = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class GameItemPicker extends Activity {
             }
         }
         Intent intent = getIntent();
-        int rackIndex = intent.getIntExtra("rackIndex", -1);
+        rackIndex = intent.getIntExtra("rackIndex", -1);
         if(rackIndex!=-1) {
             rack = store.getRacks().get(rackIndex);
         }
@@ -58,13 +56,25 @@ public class GameItemPicker extends Activity {
     }
 
     public void stopGame(){
-        rack.setChecked(true);
-        store.setChecked(incorrectItems);
-        SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("com.alfamarkt.albi.storeString",store.toString());
-        editor.apply();
-        finish();
+        if(!gameFinished) {
+            gameFinished = true;
+            rack.setChecked(true);
+            store.setChecked(incorrectItems);
+            SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("com.alfamarkt.albi.storeString", store.toString());
+            editor.apply();
+            if (store != null && rackIndex != -1 && store.getChecked()) {
+                Intent intent = new Intent(this, GameRestocker.class);
+                intent.putExtra("rackIndex", rackIndex);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, GameSummary.class);
+                intent.putExtra("rackIndex", rackIndex);
+                startActivity(intent);
+            }
+            finish();
+        }
     }
 
     @Override
@@ -92,7 +102,7 @@ public class GameItemPicker extends Activity {
     public void inStock(View view){
         if(shelfIndex<rack.getShelves().size() && itemIndex<rack.getShelves().get(shelfIndex).getItems().size()) {
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setChecked(true);
-            rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setCorrect(true);
+            rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOnDisplay(true);
             itemIndex++;
             if(itemIndex>=rack.getShelves().get(shelfIndex).getItems().size()){
                 itemIndex=0;
@@ -114,7 +124,7 @@ public class GameItemPicker extends Activity {
         if(shelfIndex<rack.getShelves().size() && itemIndex<rack.getShelves().get(shelfIndex).getItems().size()) {
             incorrectItems=true;
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setChecked(true);
-            rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setCorrect(false);
+            rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOnDisplay(false);
             itemIndex++;
             if(itemIndex>=rack.getShelves().get(shelfIndex).getItems().size()){
                 itemIndex=0;

@@ -7,5 +7,24 @@
     <string name="title_activity_game">GameActivity</string>
     <string name="title_activity_game_item_picker">GameItemPicker</string>
     <string name="title_activity_game_restocker">GameRestocker</string>
+    <string name="title_activity_game_summary">GameSummary</string>
+    <string name="title_activity_game_complete">GameComplete</string>
+    <string name="thanksForPlaying">Thank you for playing!</string>
+    <string name="greatJob">Great Job!</string>
+    <string name="inventory">Inventory</string>
+    <string name="product">Product</string>
+    <string name="submitFixedDisplay">Submit Fixed Display</string>
+    <string name="fixDisplay">Fix Display</string>
+    <string name="pleaseDisplayTheFollowing">Please display the following SKUs</string>
+    <string name="startGame">Start Game</string>
+    <string name="nextStep">Next Step</string>
+    <string name="item">Item</string>
+    <string name="sku">SKU</string>
+    <string name="completeRack">Complete Rack</string>
+    <string name="onDisplay">On display</string>
+    <string name="outOfStock">Out Of Stock</string>
+    <string name="inventoryControl">Inventory Control</string>
+    <string name="rackSummary">Rack Summary</string>
+    <string name="cont">Continue</string>
 
 </resources>

@@ -1,0 +1,164 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView android:text="@string/rackSummary" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/rackSummaryHeader" />
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none"
+    android:layout_below="@+id/rackSummaryHeader"
+    android:layout_above="@+id/btnCompleteRack"
+    android:id="@+id/completeScrollView">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btnInventoryControl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/inventoryControl"
+        android:layout_centerHorizontal="true"
+        android:onClick="toggleInvControl"/>
+    <RelativeLayout
+        android:id="@+id/layoutInvcontrol"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnInventoryControl">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id = "@+id/inventoryControlTable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TableRow android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:id="@+id/skuInvControl"
+                    android:text="@string/product"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/displayInvControl"
+                    android:text="@string/onDisplay"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/invInvControl"
+                    android:text="@string/inventory"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+            </TableRow>
+
+        </TableLayout>
+
+</RelativeLayout>
+<Button
+    android:id="@+id/btnOnDisplay"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/onDisplay"
+    android:layout_below="@+id/layoutInvcontrol"
+    android:layout_centerHorizontal="true"
+    android:onClick="toggleOnDisplay"/>
+    <RelativeLayout
+        android:id="@+id/layoutOnDisplay"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnOnDisplay">
+
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id = "@+id/onDisplayTable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TableRow android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:id="@+id/skuOnDisplay"
+                    android:text="@string/product"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/displayOnDisplay"
+                    android:text="@string/onDisplay"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/invOnDisplay"
+                    android:text="@string/inventory"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+            </TableRow>
+
+        </TableLayout>
+
+</RelativeLayout>
+<Button
+    android:id="@+id/btnOOS"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/outOfStock"
+    android:layout_below="@+id/layoutOnDisplay"
+    android:layout_centerHorizontal="true"
+    android:onClick="toggleOOS"/>
+<RelativeLayout
+    android:id="@+id/layoutOOS"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/btnOOS">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id = "@+id/oosTable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TableRow android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:id="@+id/skuOOS"
+                    android:text="@string/product"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/displayOOS"
+                    android:text="@string/onDisplay"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/invOOS"
+                    android:text="@string/inventory"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    />
+            </TableRow>
+
+        </TableLayout>
+
+</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
+    <Button
+        android:id="@+id/btnCompleteRack"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/completeRack"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="completeRack"/>
+
+</RelativeLayout>

@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import jxl.*;
 import jxl.read.biff.BiffException;
@@ -96,6 +97,10 @@ public class MainActivity extends Activity{
         item.setStock(Integer.parseInt(row.get(13).replace(" ","")));
         item.setTag(row.get(14));
         item.setCls(row.get(15));
+        // TODO make the correct checking of the inventory with an excel
+        Random generator = new Random();
+        int inv = generator.nextInt(10);
+        item.setInventory(inv);
         return item;
     }
 
