@@ -1,54 +1,189 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <TextView android:text="@string/fixDisplay" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/fixDisplayHeader" />
-
-    <TextView android:text="@string/pleaseDisplayTheFollowing" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/fixDisplayText"
-        android:layout_below="@+id/fixDisplayHeader"/>
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scrollbars="none"
-        android:layout_below="@+id/fixDisplayText"
-        android:layout_above="@+id/btnFixDisplay">
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id = "@+id/fixItemsTable"
-            android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.1">
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.3"></RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.5">
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <RelativeLayout
+                        android:layout_height="fill_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.05"></RelativeLayout>
+                    <RelativeLayout
+                        android:layout_height="fill_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.95">
+                        <TextView android:text="@string/fixDisplay" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/fixDisplayHeader"
+                            android:textSize="24dip"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.2"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.08">
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.6">
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <RelativeLayout
+                        android:layout_height="fill_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.05"></RelativeLayout>
+                    <RelativeLayout
+                        android:layout_height="fill_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.90"
+                        android:background="@drawable/border">
+                        <LinearLayout
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <RelativeLayout
+                                android:layout_height="fill_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.03"></RelativeLayout>
+                            <RelativeLayout
+                                android:layout_height="fill_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.97">
+                                <TextView android:text="@string/pleaseDisplayTheFollowing" android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" android:id="@+id/fixDisplayText"/>
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_height="fill_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.05"></RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.4"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.72">
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_height="fill_parent"
+                android:layout_width="0dip"
+                android:layout_weight="0.05"></RelativeLayout>
+            <RelativeLayout
+                android:layout_height="fill_parent"
+                android:layout_width="0dip"
+                android:layout_weight="0.90">
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:scrollbars="none">
+                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id = "@+id/fixItemsTable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@drawable/border">
+
+                        <TableRow android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:weightSum="1"
+                            android:background="@android:color/darker_gray">
+                            <TextView
+                                android:id="@+id/sku"
+                                android:text="@string/product"
+                                android:layout_height="match_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.55"
+                                />
+                            <TextView
+                                android:id="@+id/item"
+                                android:text="@string/inventory"
+                                android:layout_height="match_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.45"
+                                />
+                        </TableRow>
+
+                    </TableLayout>
+                </ScrollView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_height="fill_parent"
+                android:layout_width="0dip"
+                android:layout_weight="0.05"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.1">
+        <Button
+            android:id="@+id/btnFixDisplay"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
-
-            <TableRow android:layout_height="match_parent"
-                android:layout_width="match_parent">
-                <TextView
-                    android:id="@+id/sku"
-                    android:text="@string/product"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-                <TextView
-                    android:id="@+id/item"
-                    android:text="@string/inventory"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-            </TableRow>
-
-        </TableLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/btnFixDisplay"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/submitFixedDisplay"
-        android:enabled="false"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="fixDisplay"/>
-
-</RelativeLayout>
+            android:text="@string/submitFixedDisplay"
+            android:enabled="false"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="fixDisplay"/>
+    </RelativeLayout>
+</LinearLayout>

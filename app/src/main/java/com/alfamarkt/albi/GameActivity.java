@@ -34,7 +34,7 @@ public class GameActivity extends Activity {
         SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
         String storeString = sharedPref.getString("com.alfamarkt.albi.storeString", "");
         JSONObject json = null;
-        if(!storeString.equals("")) {
+        if(storeString!=null && !storeString.equals("")) {
             try {
                 json = new JSONObject(storeString);
                 store = StorePlanogram.jsonToStore(json);

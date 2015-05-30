@@ -1,27 +1,111 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <TextView android:text="" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/itemText" />
+    <RelativeLayout
+        android:id="@+id/relativeGame1"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.30">
 
-    <Button
-        android:id="@+id/btnInStock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Yes"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/btnNotInStock"
-        android:onClick="inStock"/>
+        <TextView android:text="Rack 1, Shelf 1" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/gameProgress"
+            android:layout_marginTop="77dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/btnNotInStock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="notInStock"/>
 
-</RelativeLayout>
+        <TextView android:text="12345 - Warsteiner Radler" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/itemText"
+            android:layout_marginTop="52dp"
+            android:layout_below="@+id/gameProgress"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeGame2"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.35">
+        <LinearLayout
+            android:id="@+id/linearImageGameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"></RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:onClick="addPhoto">
+
+                <ImageView
+                    android:id="@+id/imageitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeGame3"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.10">
+        <LinearLayout
+            android:id="@+id/linearButtonsGameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"></RelativeLayout>
+            <Button
+                android:id="@+id/btnInStock"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.10"
+                android:text="@string/Yes"
+                android:onClick="inStock" />
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.10"></RelativeLayout>
+            <Button
+                android:id="@+id/btnNotInStock"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.10"
+                android:text="@string/No"
+                android:onClick="notInStock"
+                android:layout_alignTop="@+id/btnInStock" />
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeGame4"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.25"> </RelativeLayout>
+
+
+</LinearLayout>

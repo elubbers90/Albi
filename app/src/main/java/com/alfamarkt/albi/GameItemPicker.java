@@ -3,10 +3,16 @@ package com.alfamarkt.albi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alfamarkt.albi.classes.Item;
@@ -15,6 +21,9 @@ import com.alfamarkt.albi.classes.StorePlanogram;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class GameItemPicker extends Activity {
@@ -25,14 +34,15 @@ public class GameItemPicker extends Activity {
     private int itemIndex = 0;
     private int rackIndex = -1;
     private Boolean gameFinished = false;
+    static final int REQUEST_TAKE_PHOTO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
         String storeString = sharedPref.getString("com.alfamarkt.albi.storeString", "");
-        JSONObject json = null;
-        if(!storeString.equals("")) {
+        JSONObject json;
+        if(storeString!=null && !storeString.equals("")) {
             try {
                 json = new JSONObject(storeString);
                 store = StorePlanogram.jsonToStore(json);
@@ -53,6 +63,7 @@ public class GameItemPicker extends Activity {
         TextView itemText = (TextView)findViewById(R.id.itemText);
         Item item = rack.getShelves().get(shelfIndex).getItems().get(itemIndex);
         itemText.setText(item.getSku() + " - " + item.getDescription());
+        tryLoadImage(String.valueOf(item.getSku()) + ".jpg");
     }
 
     public void stopGame(){
@@ -140,5 +151,54 @@ public class GameItemPicker extends Activity {
         } else {
             stopGame();
         }
+    }
+
+    public void addPhoto(View view){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String imageFileName = String.valueOf(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getSku())+".jpg";
+        File path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        return new File(path, imageFileName);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+            tryLoadImage(String.valueOf(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getSku())+".jpg");
+        }
+    }
+
+    private void tryLoadImage(String imageFileName){
+        File path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        if (path != null) {
+            File file = new File(path, imageFileName);
+            ImageView view = (ImageView) findViewById(R.id.imageitem);
+            if(file.exists()){
+                Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                view.setImageBitmap(myBitmap);
+            } else {
+               view.setImageResource(R.drawable.camera);
+            }
+        }
+
     }
 }

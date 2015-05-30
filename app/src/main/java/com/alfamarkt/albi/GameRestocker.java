@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -71,49 +73,81 @@ public class GameRestocker extends Activity {
                         if (!item.getOnDisplay()) {
                             if(item.getInventory()>0) {
                                 TableRow newRow = new TableRow(this);
+                                newRow.setWeightSum(1f);
+                                newRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
+                                if(tbl.getChildCount() % 2 == 0){
+                                    newRow.setBackgroundColor(Color.WHITE);
+                                } else {
+                                    newRow.setBackgroundColor(Color.parseColor("#F0F2F1"));
+                                }
+
+
                                 TextView name = new TextView(this);
                                 name.setText(item.getDescription());
+                                name.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.54f));
+                                newRow.addView(name);
+
+
                                 TextView inventory = new TextView(this);
                                 inventory.setText(String.valueOf(item.getInventory()));
-                                newRow.addView(name);
+                                inventory.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.16f));
+                                inventory.setPadding(1,0,0,0);
                                 newRow.addView(inventory);
+
+
                                 Random generator = new Random();
                                 int id = generator.nextInt(1000000) + j + i;
+
+                                RelativeLayout rel1 = new RelativeLayout(this);
+                                rel1.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.15f));
+                                LinearLayout lin1 = new LinearLayout(this);
+                                lin1.setWeightSum(1f);
+                                lin1.setOrientation(LinearLayout.VERTICAL);
                                 Button btn = new Button(this);
-                                btn.setText("Yes");
+                                btn.setBackgroundResource(R.drawable.checkmarkgrey);
                                 btn.setId(id + 1);
                                 btn.setTag(i + "-" + j);
                                 btn.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        ((Button) v).setTextColor(Color.GREEN);
+                                        ((Button) v).setBackgroundResource(R.drawable.checkmarkgreen);
                                         String tag[] = v.getTag().toString().split("-");
                                         Item item = rack.getShelves().get(Integer.parseInt(tag[0])).getItems().get(Integer.parseInt(tag[1]));
                                         item.setRestocked(true);
                                         item.setOnDisplay(true);
                                         Button view = (Button) findViewById(v.getId() - 1);
-                                        view.setTextColor(Color.BLACK);
+                                        view.setBackgroundResource(R.drawable.xgrey);
                                         if (checkRackFinished()) {
                                             Button endButton = (Button) findViewById(R.id.btnFixDisplay);
                                             endButton.setEnabled(true);
                                         }
                                     }
                                 });
-                                newRow.addView(btn);
+                                btn.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, 0, 1f));
+                                lin1.addView(btn);
+                                rel1.addView(lin1);
+                                newRow.addView(rel1);
+
+
+                                RelativeLayout rel2 = new RelativeLayout(this);
+                                rel2.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.15f));
+                                LinearLayout lin2 = new LinearLayout(this);
+                                lin2.setWeightSum(1f);
+                                lin2.setOrientation(LinearLayout.VERTICAL);
                                 Button btnNo = new Button(this);
-                                btnNo.setText("No");
+                                btnNo.setBackgroundResource(R.drawable.xgrey);
                                 btnNo.setId(id);
                                 btnNo.setTag(i + "-" + j);
                                 btnNo.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        ((Button) v).setTextColor(Color.RED);
+                                        ((Button) v).setBackgroundResource(R.drawable.xred);
                                         String tag[] = v.getTag().toString().split("-");
                                         Item item = rack.getShelves().get(Integer.parseInt(tag[0])).getItems().get(Integer.parseInt(tag[1]));
                                         item.setRestocked(true);
                                         item.setOnDisplay(false);
                                         Button view = (Button) findViewById(v.getId() + 1);
-                                        view.setTextColor(Color.BLACK);
+                                        view.setBackgroundResource(R.drawable.checkmarkgrey);
                                         if (checkRackFinished()) {
                                             Button endButton = (Button) findViewById(R.id.btnFixDisplay);
                                             endButton.setEnabled(true);
@@ -121,7 +155,12 @@ public class GameRestocker extends Activity {
                                     }
 
                                 });
-                                newRow.addView(btnNo);
+                                btnNo.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, 0, 1f));
+                                lin2.addView(btnNo);
+                                rel2.addView(lin2);
+                                newRow.addView(rel2);
+
+
                                 tbl.addView(newRow);
                             }
                         }

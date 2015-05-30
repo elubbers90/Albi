@@ -26,5 +26,7 @@
     <string name="inventoryControl">Inventory Control</string>
     <string name="rackSummary">Rack Summary</string>
     <string name="cont">Continue</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
 
 </resources>

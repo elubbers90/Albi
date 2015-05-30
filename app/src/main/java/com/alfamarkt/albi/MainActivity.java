@@ -73,8 +73,10 @@ public class MainActivity extends Activity{
             } else if(!secondCell.equals("") && !secondCell.replace(" ","").equals("") && !secondCell.equals("Hole")){
                 Shelf shelf = shelves.get(shelves.size()-1);
                 Item item = parseItem(row, items.size());
-                items.add(item);
-                shelf.addItem(item);
+                if(!item.getDescription().replace(" ","").equals("-") && !item.getDescription().replace(" ","").equals("")) {
+                    items.add(item);
+                    shelf.addItem(item);
+                }
             }
         }
         store.setRacks(racks);
