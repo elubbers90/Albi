@@ -1,22 +1,86 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:weightSum="1">
 
-    <ImageView
-        android:id="@+id/albilogo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/albilogo" />
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="0dip"
+        android:layout_weight="0.15"></RelativeLayout>
 
-    <Button
-        android:id="@+id/btnStartGame"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/startGame"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:onClick="playGame"/>
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="0dip"
+        android:layout_weight="0.7">
 
-</RelativeLayout>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.1">
+                <TextView android:text="@string/albiCheck" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/albiCheck"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="24dip"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.35">
+                <Button
+                    android:id="@+id/btnCheckRandomRack"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="@string/checkRandomRack"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="playGame"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.1">
+                <Button
+                    android:id="@+id/btnOptions"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="@string/options"
+                    android:enabled="false"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.35">
+                <Button
+                    android:id="@+id/btnCheckSpecificRack"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="@string/checkSpecificRack"
+                    android:enabled="false"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="playGame"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.1"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="0dip"
+        android:layout_weight="0.15"></RelativeLayout>
+
+</LinearLayout>

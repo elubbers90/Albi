@@ -16,7 +16,7 @@
     <string name="submitFixedDisplay">Submit Fixed Display</string>
     <string name="fixDisplay">Fix Display</string>
     <string name="pleaseDisplayTheFollowing">Please display the following SKUs</string>
-    <string name="startGame">Start Game</string>
+    <string name="checkSpecificRack">Check Specific Rack</string>
     <string name="nextStep">Next Step</string>
     <string name="item">Item</string>
     <string name="sku">SKU</string>
@@ -28,5 +28,8 @@
     <string name="cont">Continue</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
+    <string name="options">Options</string>
+    <string name="checkRandomRack">Check Random Rack</string>
+    <string name="albiCheck">Albi Check</string>
 
 </resources>

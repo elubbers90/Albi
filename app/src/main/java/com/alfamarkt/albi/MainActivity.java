@@ -49,10 +49,6 @@ public class MainActivity extends Activity{
             List<List<String>> result = loadXML("planogram.xls");
             store = parseXML(result);
             storeString = store.toString();
-            if(!result.isEmpty()) {
-                Button startButton = (Button) findViewById(R.id.btnStartGame);
-                startButton.setVisibility(View.VISIBLE);
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -230,8 +226,8 @@ public class MainActivity extends Activity{
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("com.alfamarkt.albi.storeString",storeString);
             editor.apply();
+            Intent intent = new Intent(this, GameActivity.class);
+            startActivity(intent);
         }
-        Intent intent = new Intent(this, GameActivity.class);
-        startActivity(intent);
     }
 }

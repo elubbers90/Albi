@@ -10,20 +10,6 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="0.1">
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:weightSum="1">
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.3"></RelativeLayout>
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.5">
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
@@ -40,15 +26,10 @@
                         android:layout_weight="0.95">
                         <TextView android:text="@string/rackSummary" android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/rackSummaryHeader"
-                            android:textSize="24dip"/>
+                            android:textSize="24dip"
+                            android:layout_centerVertical="true"/>
                     </RelativeLayout>
                 </LinearLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="0dip"
-                android:layout_weight="0.2"></RelativeLayout>
-        </LinearLayout>
     </RelativeLayout>
 
 
