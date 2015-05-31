@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -86,13 +87,17 @@ public class GameRestocker extends Activity {
                                 TextView name = new TextView(this);
                                 name.setText(item.getDescription());
                                 name.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.70f));
+                                name.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                                        getResources().getDimension(R.dimen.tableText));
                                 newRow.addView(name);
 
 
                                 TextView inventory = new TextView(this);
                                 inventory.setText(String.valueOf(item.getInventory()));
                                 inventory.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.10f));
-                                inventory.setPadding(1,0,0,0);
+                                inventory.setPadding(1, 0, 0, 0);
+                                inventory.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                                        getResources().getDimension(R.dimen.tableText));
                                 newRow.addView(inventory);
 
 

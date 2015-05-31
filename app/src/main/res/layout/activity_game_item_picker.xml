@@ -17,7 +17,7 @@
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/itemSKU"
-            android:textSize="24dp"
+            android:textSize="@dimen/pageHeader"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -26,18 +26,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.03">
+        android:layout_weight="0.04">
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/itemText"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/defaultTextSize"/>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.05"></RelativeLayout>
+        android:layout_weight="0.04"></RelativeLayout>
 
 
 

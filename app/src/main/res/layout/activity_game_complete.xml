@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:textSize="24dip"/>
+            android:textSize="@dimen/pageHeader"/>
     </RelativeLayout>
 
 
@@ -79,7 +79,7 @@
         <TextView android:text="@string/thanksForPlaying" android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textSize="24dip"/>
+            android:textSize="@dimen/pageHeader"/>
     </RelativeLayout>
 
 
@@ -94,6 +94,7 @@
             android:layout_height="wrap_content"
             android:text="@string/cont"
             android:layout_alignParentBottom="true"
+            android:textSize="@dimen/defaultTextSize"
             android:layout_centerHorizontal="true"
             android:onClick="finishGame"/>
     </RelativeLayout>

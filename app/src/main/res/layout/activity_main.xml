@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content" android:id="@+id/albiCheck"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:textSize="24dip"/>
+                    android:textSize="@dimen/pageHeader"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -42,6 +42,7 @@
                     android:text="@string/checkRandomRack"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/defaultTextSize"
                     android:onClick="playGame"/>
             </RelativeLayout>
             <RelativeLayout
@@ -55,6 +56,7 @@
                     android:text="@string/options"
                     android:enabled="false"
                     android:layout_alignParentBottom="true"
+                    android:textSize="@dimen/defaultTextSize"
                     android:layout_centerHorizontal="true"/>
             </RelativeLayout>
             <RelativeLayout
@@ -69,6 +71,7 @@
                     android:enabled="false"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/defaultTextSize"
                     android:onClick="playGame"/>
             </RelativeLayout>
             <RelativeLayout

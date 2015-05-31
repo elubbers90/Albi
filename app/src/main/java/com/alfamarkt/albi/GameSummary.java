@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,6 +53,23 @@ public class GameSummary extends Activity {
             rack = store.getRacks().get(rackIndex);
         }
         setContentView(R.layout.activity_game_summary);
+        int onDisplay = 0;
+        int totalItems = 0;
+        for(int i=0;i<rack.getShelves().size();i++){
+            for(int j=0;j<rack.getShelves().get(i).getItems().size();j++){
+                totalItems++;
+                if(rack.getShelves().get(i).getItems().get(j).getOnDisplay()){
+                    onDisplay++;
+                }
+            }
+        }
+        float highscore = (float)Math.floor((onDisplay * 100)/totalItems);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        float personalBest = sharedPref.getFloat("com.alfamarkt.albi.highScoreStore"+store.getClassStore().replace(" ","")+ "Rack" +rack.getNumber(), -1);
+        if(highscore>personalBest) {
+            editor.putFloat("com.alfamarkt.albi.highScoreStore" + store.getClassStore().replace(" ", "") + "Rack" + rack.getNumber(), highscore);
+            editor.apply();
+        }
         populateTable();
     }
 
@@ -78,11 +96,13 @@ public class GameSummary extends Activity {
                     if (item.getChecked()) {
                         TableRow newRow = new TableRow(this);
                         newRow.setWeightSum(1f);
-                        newRow.setPadding(0,30,0,30);
+                        newRow.setPadding(0, 30, 0, 30);
                         newRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
                         TextView name = new TextView(this);
                         name.setText(item.getDescription());
                         name.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.55f));
+                        name.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                                getResources().getDimension(R.dimen.tableText));
                         newRow.addView(name);
                         TextView onDisplay = new TextView(this);
                         if(item.onDisplay){
@@ -91,10 +111,14 @@ public class GameSummary extends Activity {
                             onDisplay.setText("No");
                         }
                         onDisplay.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.25f));
+                        onDisplay.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                                getResources().getDimension(R.dimen.tableText));
                         newRow.addView(onDisplay);
                         TextView inventory = new TextView(this);
                         inventory.setText(String.valueOf(item.getInventory()));
                         inventory.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.20f));
+                        inventory.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                                getResources().getDimension(R.dimen.tableText));
                         newRow.addView(inventory);
                         if(!item.getOnDisplay() && item.getRestocked()){
                             if(tbl1.getChildCount() % 2 == 0){

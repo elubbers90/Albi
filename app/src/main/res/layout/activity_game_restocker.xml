@@ -25,8 +25,8 @@
                 android:layout_weight="0.95">
                 <TextView android:text="@string/fixDisplay" android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/fixDisplayHeader"
-                    android:textSize="24dip"
-                    android:layout_centerVertical="true"/>
+                    android:textSize="@dimen/pageHeader"
+                    android:layout_centerVertical="true" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -76,7 +76,9 @@
                                 android:layout_width="0dip"
                                 android:layout_weight="0.97">
                                 <TextView android:text="@string/pleaseDisplayTheFollowing" android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" android:id="@+id/fixDisplayText"/>
+                                    android:layout_height="wrap_content" android:id="@+id/fixDisplayText"
+                                    android:textSize="@dimen/tableText"
+                                    android:layout_centerVertical="true"/>
                             </RelativeLayout>
                         </LinearLayout>
                     </RelativeLayout>
@@ -133,6 +135,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_width="0dip"
                                 android:layout_weight="0.70"
+                                android:textSize="@dimen/tableText"
                                 />
                             <TextView
                                 android:id="@+id/item"
@@ -140,6 +143,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_width="0dip"
                                 android:layout_weight="0.30"
+                                android:textSize="@dimen/tableText"
                                 />
                         </TableRow>
 
@@ -165,6 +169,7 @@
             android:enabled="false"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:textSize="@dimen/defaultTextSize"
             android:onClick="fixDisplay"/>
     </RelativeLayout>
 </LinearLayout>

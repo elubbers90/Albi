@@ -61,37 +61,6 @@ public class GameItemPicker extends Activity {
             rack = store.getRacks().get(rackIndex);
         }
         setContentView(R.layout.activity_game_item_picker);
-
-        /*final Button but1 = (Button) findViewById(R.id.btnInStock);
-        but1.setOnTouchListener(new View.OnTouchListener() {
-
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    but1.setBackgroundResource(R.drawable.checkmarkgreen);
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    but1.setBackgroundResource(R.drawable.checkmarkgrey);
-                    inStock(v);
-                } else {
-                    but1.setBackgroundResource(R.drawable.checkmarkgrey);
-                }
-                return true;
-            }
-        });
-        final Button but2 = (Button) findViewById(R.id.btnNotInStock);
-        but2.setOnTouchListener(new View.OnTouchListener() {
-
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    but2.setBackgroundResource(R.drawable.xred);
-                } else if(event.getAction() == MotionEvent.ACTION_UP){
-                    but2.setBackgroundResource(R.drawable.xgrey);
-                    notInStock(v);
-                } else {
-                    but2.setBackgroundResource(R.drawable.xgrey);
-                }
-                return true;
-            }
-        });*/
         setNextItem();
     }
 
@@ -171,7 +140,9 @@ public class GameItemPicker extends Activity {
 
     public void notInStock(){
         if(shelfIndex<rack.getShelves().size() && itemIndex<rack.getShelves().get(shelfIndex).getItems().size()) {
-            incorrectItems=true;
+            if(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getInventory()>0) {
+                incorrectItems = true;
+            }
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setChecked(true);
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOnDisplay(false);
             itemIndex++;

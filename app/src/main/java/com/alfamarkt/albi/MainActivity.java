@@ -2,6 +2,8 @@
 package com.alfamarkt.albi;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -73,8 +75,10 @@ public class MainActivity extends Activity{
             } else if(!firstCell.equals("") && !firstCell.replace(" ","").equals("") && !firstCell.equals("Shv")){
                 Shelf shelf = parseShelf(firstCell, shelves.size());
                 Item item = parseItem(row, items.size());
-                items.add(item);
-                shelf.addItem(item);
+                if(!item.getDescription().replace(" ","").equals("-") && !item.getDescription().replace(" ","").equals("")) {
+                    items.add(item);
+                    shelf.addItem(item);
+                }
                 shelves.add(shelf);
                 racks.get(racks.size()-1).addShelf(shelf);
             } else if(!secondCell.equals("") && !secondCell.replace(" ","").equals("") && !secondCell.equals("Hole")){
@@ -165,6 +169,16 @@ public class MainActivity extends Activity{
             } else {
                 InputStream in = getAssets().open(inputFile);
                 w = Workbook.getWorkbook(in);
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setTitle("Planogram not loaded");
+                alertDialog.setMessage("The planogram excel has not be found in the Downloads folder.");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
             }
             // Get the first sheet
             Sheet sheet = w.getSheet(0);
@@ -195,6 +209,16 @@ public class MainActivity extends Activity{
             } else {
                 InputStream in = getAssets().open(inputFile);
                 br = new BufferedReader(new InputStreamReader(in));
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setTitle("Inventory not loaded");
+                alertDialog.setMessage("The inventory file has not be found in the Downloads folder.");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
             }
             String line;
             while ((line = br.readLine()) != null) {
@@ -222,11 +246,15 @@ public class MainActivity extends Activity{
 
     public void playGame(View view){
         if(storeString!=null) {
+            Random generator = new Random();
+            int rackIndex = generator.nextInt(store.getRacks().size());
+            rackIndex=0;
             SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("com.alfamarkt.albi.storeString",storeString);
             editor.apply();
             Intent intent = new Intent(this, GameActivity.class);
+            intent.putExtra("rackIndex", rackIndex);
             startActivity(intent);
         }
     }

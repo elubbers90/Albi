@@ -31,5 +31,7 @@
     <string name="options">Options</string>
     <string name="checkRandomRack">Check Random Rack</string>
     <string name="albiCheck">Albi Check</string>
+    <string name="start">Start</string>
+    <string name="personalBest">Previous Best:\n-</string>
 
 </resources>

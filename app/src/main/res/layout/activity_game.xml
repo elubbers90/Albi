@@ -1,44 +1,132 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <ScrollView
-        android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <RelativeLayout
         android:layout_height="fill_parent"
-        android:scrollbars="none"
-        android:layout_above="@+id/btnNextStep">
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id = "@+id/itemsTable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
+        android:layout_width="0dip"
+        android:layout_weight="0.15"></RelativeLayout>
 
-            <TableRow android:layout_height="match_parent"
-                android:layout_width="match_parent">
-                <TextView
-                    android:id="@+id/sku"
-                    android:text="@string/sku"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-                <TextView
-                    android:id="@+id/item"
-                    android:text="@string/item"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-            </TableRow>
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="0dip"
+        android:layout_weight="0.7">
 
-        </TableLayout>
-    </ScrollView>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.1">
+                <TextView android:text="@string/albiCheck" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/albiCheck"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/pageHeader"/>
+            </RelativeLayout>
 
-    <Button
-        android:id="@+id/btnNextStep"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/nextStep"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="playGame"/>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.8"
+                android:background="@drawable/border">
 
-</RelativeLayout>
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="0.2">
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/rackNumber"
+                            android:layout_centerHorizontal="true"
+                            android:layout_alignParentBottom="true"
+                            android:textSize="@dimen/pageHeader"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="0.3">
+                        <TextView android:text="@string/personalBest" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/previousBest"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/defaultTextSize"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="0.1">
+                        <TextView android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/shelfAmount"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/pageHeader"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="0.3">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="1"
+                            android:orientation="horizontal">
+                            <RelativeLayout
+                                android:layout_height="fill_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.2"></RelativeLayout>
+                            <RelativeLayout
+                                android:layout_height="fill_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.6">
+                                <Button
+                                    android:id="@+id/btnStartGame"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:text="@string/start"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:textSize="@dimen/defaultTextSize"
+                                    android:onClick="playGame"/>
+                           </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_height="fill_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.2"></RelativeLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="0.1"></RelativeLayout>
+
+                    </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.1"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="0dip"
+        android:layout_weight="0.15"></RelativeLayout>
+
+</LinearLayout>

@@ -26,7 +26,7 @@
                         android:layout_weight="0.95">
                         <TextView android:text="@string/rackSummary" android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/rackSummaryHeader"
-                            android:textSize="24dip"
+                            android:textSize="@dimen/pageHeader"
                             android:layout_centerVertical="true"/>
                     </RelativeLayout>
                 </LinearLayout>
@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:text="@string/inventoryControl"
         android:layout_centerHorizontal="true"
+        android:textSize="@dimen/defaultTextSize"
         android:onClick="toggleInvControl"/>
     <RelativeLayout
         android:id="@+id/layoutInvcontrol"
@@ -86,20 +87,23 @@
                                 android:layout_height="match_parent"
                                 android:layout_width="0dip"
                                 android:layout_weight="0.55"
+                                android:textSize="@dimen/tableText"
                                 />
                             <TextView
                                 android:id="@+id/displayInvControl"
                                 android:text="@string/onDisplay"
                                 android:layout_height="match_parent"
                                 android:layout_width="0dip"
-                                android:layout_weight="0.25"
+                                android:layout_weight="0.24"
+                                android:textSize="@dimen/tableText"
                                 />
                             <TextView
                                 android:id="@+id/invInvControl"
                                 android:text="@string/inventory"
                                 android:layout_height="match_parent"
                                 android:layout_width="0dip"
-                                android:layout_weight="0.20"
+                                android:layout_weight="0.21"
+                                android:textSize="@dimen/tableText"
                                 />
                         </TableRow>
 
@@ -119,6 +123,7 @@
     android:text="@string/onDisplay"
     android:layout_below="@+id/layoutInvcontrol"
     android:layout_centerHorizontal="true"
+    android:textSize="@dimen/defaultTextSize"
     android:onClick="toggleOnDisplay"/>
     <RelativeLayout
         android:id="@+id/layoutOnDisplay"
@@ -157,20 +162,23 @@
                         android:layout_height="match_parent"
                         android:layout_width="0dip"
                         android:layout_weight="0.55"
+                        android:textSize="@dimen/tableText"
                         />
                     <TextView
                         android:id="@+id/displayOnDisplay"
                         android:text="@string/onDisplay"
                         android:layout_height="match_parent"
                         android:layout_width="0dip"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.24"
+                        android:textSize="@dimen/tableText"
                         />
                     <TextView
                         android:id="@+id/invOnDisplay"
                         android:text="@string/inventory"
                         android:layout_height="match_parent"
                         android:layout_width="0dip"
-                        android:layout_weight="0.20"
+                        android:layout_weight="0.21"
+                        android:textSize="@dimen/tableText"
                         />
                 </TableRow>
 
@@ -190,6 +198,7 @@
     android:text="@string/outOfStock"
     android:layout_below="@+id/layoutOnDisplay"
     android:layout_centerHorizontal="true"
+    android:textSize="@dimen/defaultTextSize"
     android:onClick="toggleOOS"/>
 <RelativeLayout
     android:id="@+id/layoutOOS"
@@ -227,20 +236,23 @@
                         android:layout_height="match_parent"
                         android:layout_width="0dip"
                         android:layout_weight="0.55"
+                        android:textSize="@dimen/tableText"
                         />
                     <TextView
                         android:id="@+id/displayOOS"
                         android:text="@string/onDisplay"
                         android:layout_height="match_parent"
                         android:layout_width="0dip"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.24"
+                        android:textSize="@dimen/tableText"
                         />
                     <TextView
                         android:id="@+id/invOOS"
                         android:text="@string/inventory"
                         android:layout_height="match_parent"
                         android:layout_width="0dip"
-                        android:layout_weight="0.20"
+                        android:layout_weight="0.21"
+                        android:textSize="@dimen/tableText"
                         />
                 </TableRow>
 
@@ -267,6 +279,7 @@
             android:layout_height="wrap_content"
             android:text="@string/completeRack"
             android:layout_alignParentBottom="true"
+            android:textSize="@dimen/defaultTextSize"
             android:layout_centerHorizontal="true"
             android:onClick="completeRack"/>
     </RelativeLayout>

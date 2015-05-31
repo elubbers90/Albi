@@ -42,36 +42,30 @@ public class GameActivity extends Activity {
                 e.printStackTrace();
             }
         }
+        Intent intent = getIntent();
+        rackIndex = intent.getIntExtra("rackIndex", -1);
         setContentView(R.layout.activity_game);
         populateTable();
     }
 
     private void populateTable(){
-        if(store!=null){
-            TableLayout tbl = (TableLayout)findViewById(R.id.itemsTable);
-            for(int i = tbl.getChildCount(); i>1; i++) {
-                tbl.removeViewAt(i);
-            }
-            if(!store.getChecked()) {
-                Random generator = new Random();
-                rackIndex = generator.nextInt(store.getRacks().size());
-            }
+        if(store!=null && rackIndex!=-1){
             Rack rack = store.getRacks().get(rackIndex);
-            List<Shelf> shelves = rack.getShelves();
-            for(int i=0;i<shelves.size();i++){
-                List<Item> items = shelves.get(i).getItems();
-                for(int j=0;j<items.size();j++) {
-                    Item item = items.get(j);
-                    TableRow newRow = new TableRow(this);
-                    TextView sku = new TextView(this);
-                    sku.setText(String.valueOf(item.getSku()));
-                    TextView name = new TextView(this);
-                    name.setText(item.getDescription());
-                    newRow.addView(sku);
-                    newRow.addView(name);
-                    tbl.addView(newRow);
-                }
+            TextView rackNumber = (TextView) findViewById(R.id.rackNumber);
+            rackNumber.setText("Rack " + rack.getNumber());
+            TextView shelfAmount = (TextView) findViewById(R.id.shelfAmount);
+            if(rack.getShelves().size()==1){
+                shelfAmount.setText("1 shelf");
+            } else {
+                shelfAmount.setText(rack.getShelves().size() + " shelves");
             }
+            SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
+            int personalBest = (int) sharedPref.getFloat("com.alfamarkt.albi.highScoreStore"+store.getClassStore().replace(" ","")+ "Rack" +rack.getNumber(), -1);
+            if(personalBest>=0){
+                TextView personalBestView = (TextView) findViewById(R.id.previousBest);
+                personalBestView.setText("Previous Best:\n" + personalBest + "% on display");
+            }
+
         }
     }
 
@@ -109,35 +103,5 @@ public class GameActivity extends Activity {
             startActivity(intent);
             finish();
         }
-    }
-/*
-    public void fixDisplay(View view){
-        if(store!=null && rackIndex!=-1 && store.getChecked()) {
-            SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString("com.alfamarkt.albi.storeString",store.toString());
-            editor.apply();
-            Intent intent = new Intent(this, GameRestocker.class);
-            intent.putExtra("rackIndex", rackIndex);
-            startActivity(intent);
-        }
-    }*/
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
-        String storeString = sharedPref.getString("com.alfamarkt.albi.storeString", "");
-        JSONObject json = null;
-        if (!storeString.equals("")) {
-            try {
-                json = new JSONObject(storeString);
-                store = StorePlanogram.jsonToStore(json);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        setContentView(R.layout.activity_game);
-        populateTable();
     }
 }

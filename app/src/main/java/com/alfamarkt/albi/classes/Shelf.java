@@ -65,14 +65,17 @@ public class Shelf {
         result+=id;
         result+=",\"number\":";
         result+=number;
-        result+=",\"items\":[";
-        for(int i=0;i<items.size();i++){
-            if(i!=0){
-                result+=",";
+        if(items!=null) {
+            result += ",\"items\":[";
+            for (int i = 0; i < items.size(); i++) {
+                if (i != 0) {
+                    result += ",";
+                }
+                result += items.get(i).toString();
             }
-            result+=items.get(i).toString();
+            result += "]";
         }
-        result+="]}";
+        result+="}";
         return result;
     }
 

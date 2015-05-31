@@ -26,6 +26,11 @@
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_complete.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_item_picker.xml">
         <config>
           <theme>@style/AppTheme</theme>
@@ -42,7 +47,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.alfamarkt.albi" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameActivity.java" line="45" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameActivity.java" line="47" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="373051d7-2315-43c4-b56a-c962aba31de2" name="Default" comment="" />
@@ -96,34 +101,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="activity_game.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml">
+      <file leaf-file-name="GameItemPicker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameItemPicker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state vertical-scroll-proportion="-14.896552">
+              <caret line="157" column="30" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="text-editor">
+      <file leaf-file-name="GameActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
-              <folding>
-                <element signature="e#989#1008#0" expanded="true" />
-                <element signature="e#1718#1743#0" expanded="true" />
-                <element signature="e#2328#2345#0" expanded="true" />
-                <element signature="e#2938#2965#0" expanded="true" />
-              </folding>
+              <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="162" />
+              <folding />
             </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -131,91 +125,26 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="214" column="57" selection-start-line="214" selection-start-column="57" selection-end-line="214" selection-end-column="57" />
+              <caret line="253" column="66" selection-start-line="253" selection-start-column="66" selection-end-line="253" selection-end-column="66" />
               <folding>
-                <element signature="e#5846#5860#0" expanded="true" />
-                <element signature="e#6509#6517#0" expanded="true" />
-                <element signature="e#6977#6985#0" expanded="true" />
-                <element signature="e#7842#7859#0" expanded="true" />
+                <element signature="e#6070#6084#0" expanded="true" />
+                <element signature="e#7360#7368#0" expanded="true" />
+                <element signature="e#7828#7836#0" expanded="true" />
+                <element signature="e#9319#9336#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameItemPicker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameItemPicker.java">
+      <file leaf-file-name="GameSummary.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameSummary.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="229" column="27" selection-start-line="229" selection-start-column="27" selection-end-line="229" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_game_summary.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_summary.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="63" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.24285714">
+              <caret line="55" column="26" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
               <folding>
-                <element signature="e#1141#1162#0" expanded="true" />
-                <element signature="e#1978#2004#0" expanded="true" />
-                <element signature="e#3744#3761#0" expanded="true" />
-                <element signature="e#4138#4157#0" expanded="true" />
-                <element signature="e#4530#4549#0" expanded="true" />
-                <element signature="e#5251#5270#0" expanded="true" />
-                <element signature="e#6882#6899#0" expanded="true" />
-                <element signature="e#7219#7238#0" expanded="true" />
-                <element signature="e#7554#7573#0" expanded="true" />
-                <element signature="e#8209#8229#0" expanded="true" />
-                <element signature="e#9765#9782#0" expanded="true" />
-                <element signature="e#10096#10115#0" expanded="true" />
-                <element signature="e#10425#10444#0" expanded="true" />
-                <element signature="e#11288#11310#0" expanded="true" />
+                <element signature="e#5391#5437#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_game_restocker.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_restocker.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_game_complete.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_complete.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="50" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_game_item_picker.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_item_picker.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="117" column="27" selection-start-line="117" selection-start-column="27" selection-end-line="117" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -224,9 +153,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="valueResourceFile" />
         <option value="resourceFile" />
         <option value="Class" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>
@@ -1517,23 +1446,33 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_complete.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/border.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/border.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameRestocker.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameSummary.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/androidOverriders/ItemPickerLinearLayout.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameItemPicker.java" />
         <option value="$PROJECT_DIR$/app/src/main/assets/inventory.txt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_item_picker.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/classes/Shelf.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-normal/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-large/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-xlarge/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_summary.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_item_picker.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_complete.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_restocker.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-mdpi/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-ldpi/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameRestocker.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-hdpi/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-xhdpi/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-xxhdpi/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameItemPicker.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameSummary.java" />
       </list>
     </option>
   </component>
@@ -1651,6 +1590,28 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dimens.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Albi" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1740,10 +1701,10 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1768,6 +1729,11 @@
     <key name="android.template.packageName">
       <recent name="com.alfamarkt.albi" />
       <recent name="com.alfamarkt.albi.classes" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ansem\AndroidstudioProjects\Albi\app\src\main\res\values-xhdpi" />
+      <recent name="C:\Users\Ansem\AndroidstudioProjects\Albi\app\src\main\res\values-hdpi" />
+      <recent name="C:\Users\Ansem\AndroidstudioProjects\Albi\app\src\main\res\values-ldpi" />
     </key>
     <key name="android.template.parentActivityClass">
       <recent name="com.alfamarkt.albi.GameActivity" />
@@ -1990,18 +1956,18 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.49754903" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.6164216" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33563218" sideWeight="0.6170343" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32873562" sideWeight="0.37745097" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32413793" sideWeight="0.3805147" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43545878" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32988507" sideWeight="0.49264705" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.49019608" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.49754903" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15632184" sideWeight="0.622549" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32413793" sideWeight="0.6194853" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25183824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2068,13 +2034,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="65" />
+      <option name="time" value="67" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
-        <watch expression="br.readLine()" />
-        <watch expression="input.get(i).split(&quot;\t&quot;)" language="JAVA" custom="" />
-        <watch expression="splitted[1].split(&quot;\\.&quot;)" language="JAVA" custom="" />
+        <watch expression="item.getDescription().replace(&quot; &quot;,&quot;&quot;).equals(&quot;-&quot;)" language="JAVA" custom="" />
+        <watch expression="item.getDescription().replace(&quot; &quot;,&quot;&quot;).equals(&quot;&quot;)" language="JAVA" custom="" />
+        <watch expression="!item.getDescription().replace(&quot; &quot;,&quot;&quot;).equals(&quot;-&quot;) &amp;&amp; !item.getDescription().replace(&quot; &quot;,&quot;&quot;).equals(&quot;&quot;)" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
@@ -2090,71 +2056,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding>
-            <element signature="e#989#1008#0" expanded="true" />
-            <element signature="e#1718#1743#0" expanded="true" />
-            <element signature="e#2328#2345#0" expanded="true" />
-            <element signature="e#2938#2965#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/classes/StorePlanogram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/classes/Rack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/classes/Shelf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="28" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/classes/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding>
-            <element signature="e#989#1008#0" expanded="true" />
-            <element signature="e#1718#1743#0" expanded="true" />
-            <element signature="e#2328#2345#0" expanded="true" />
-            <element signature="e#2938#2965#0" expanded="true" />
-          </folding>
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -2180,12 +2082,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-          <folding>
-            <element signature="e#989#1008#0" expanded="true" />
-            <element signature="e#1718#1743#0" expanded="true" />
-            <element signature="e#2328#2345#0" expanded="true" />
-            <element signature="e#2938#2965#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -2203,12 +2100,7 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#989#1008#0" expanded="true" />
-            <element signature="e#1718#1743#0" expanded="true" />
-            <element signature="e#2328#2345#0" expanded="true" />
-            <element signature="e#2938#2965#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer">
@@ -2278,13 +2170,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/classes/Shelf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files (x86)/Android/android-sdk/platforms/android-22/android.jar!/android/widget/TextView.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18819188">
@@ -2317,14 +2202,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.092391305">
           <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="56" selection-start-line="51" selection-start-column="56" selection-end-line="51" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2364,27 +2241,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameRestocker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="126" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameSummary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="119" selection-start-line="92" selection-start-column="119" selection-end-line="92" selection-end-column="119" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/border.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2392,7 +2252,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35216573">
           <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="46" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2400,21 +2259,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.2446043">
           <caret line="47" column="63" selection-start-line="47" selection-start-column="63" selection-end-line="47" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#433#434#0" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameItemPicker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="229" column="27" selection-start-line="229" selection-start-column="27" selection-end-line="229" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2422,7 +2266,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.034274194">
           <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2430,40 +2273,177 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5141129">
           <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/classes/Shelf.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="214" column="57" selection-start-line="214" selection-start-column="57" selection-end-line="214" selection-end-column="57" />
-          <folding>
-            <element signature="e#5846#5860#0" expanded="true" />
-            <element signature="e#6509#6517#0" expanded="true" />
-            <element signature="e#6977#6985#0" expanded="true" />
-            <element signature="e#7842#7859#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.54464287">
+          <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85350317">
-          <caret line="31" column="33" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="48" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-w820dp/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="63" selection-start-line="54" selection-start-column="63" selection-end-line="54" selection-end-column="63" />
+          <folding>
+            <element signature="e#3112#3136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+          <caret line="73" column="61" selection-start-line="73" selection-start-column="61" selection-end-line="73" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_item_picker.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="54" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_complete.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
           <folding>
-            <element signature="e#989#1008#0" expanded="true" />
-            <element signature="e#1718#1743#0" expanded="true" />
-            <element signature="e#2328#2345#0" expanded="true" />
-            <element signature="e#2938#2965#0" expanded="true" />
+            <element signature="e#529#547#0" expanded="true" />
+            <element signature="e#3268#3294#0" expanded="true" />
+            <element signature="e#3460#3479#0" expanded="true" />
+            <element signature="e#3870#3884#0" expanded="true" />
+            <element signature="e#3966#3990#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15454546">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-mdpi/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-ldpi/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.123636365">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameRestocker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27321428">
+          <caret line="99" column="88" selection-start-line="99" selection-start-column="88" selection-end-line="99" selection-end-column="88" />
+          <folding>
+            <element signature="e#3620#3666#0" expanded="true" />
+            <element signature="e#4206#4252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-xhdpi/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-xxhdpi/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-hdpi/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24285714">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_summary.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="281" column="53" selection-start-line="281" selection-start-column="53" selection-end-line="281" selection-end-column="53" />
+          <folding>
+            <element signature="e#1141#1162#0" expanded="false" />
+            <element signature="e#1345#1364#0" expanded="false" />
+            <element signature="e#1990#2016#0" expanded="false" />
+            <element signature="e#2089#2113#0" expanded="false" />
+            <element signature="e#3806#3823#0" expanded="false" />
+            <element signature="e#4063#4081#0" expanded="false" />
+            <element signature="e#4268#4287#0" expanded="false" />
+            <element signature="e#4527#4545#0" expanded="false" />
+            <element signature="e#4728#4747#0" expanded="false" />
+            <element signature="e#4987#5005#0" expanded="false" />
+            <element signature="e#5517#5536#0" expanded="false" />
+            <element signature="e#5650#5674#0" expanded="false" />
+            <element signature="e#7194#7211#0" expanded="false" />
+            <element signature="e#7419#7437#0" expanded="false" />
+            <element signature="e#7591#7610#0" expanded="false" />
+            <element signature="e#7818#7836#0" expanded="false" />
+            <element signature="e#7986#8005#0" expanded="false" />
+            <element signature="e#8213#8231#0" expanded="false" />
+            <element signature="e#8701#8721#0" expanded="false" />
+            <element signature="e#8834#8858#0" expanded="false" />
+            <element signature="e#10303#10320#0" expanded="false" />
+            <element signature="e#10528#10546#0" expanded="false" />
+            <element signature="e#10694#10713#0" expanded="false" />
+            <element signature="e#10921#10939#0" expanded="false" />
+            <element signature="e#11083#11102#0" expanded="false" />
+            <element signature="e#11310#11328#0" expanded="false" />
+            <element signature="e#12006#12028#0" expanded="false" />
+            <element signature="e#12110#12134#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2474,71 +2454,62 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_restocker.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_item_picker.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="117" column="27" selection-start-line="117" selection-start-column="27" selection-end-line="117" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_complete.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="50" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game_summary.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="63" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
+          <caret line="80" column="71" selection-start-line="80" selection-start-column="71" selection-end-line="80" selection-end-column="71" />
           <folding>
-            <element signature="e#1141#1162#0" expanded="true" />
-            <element signature="e#1978#2004#0" expanded="true" />
-            <element signature="e#3744#3761#0" expanded="true" />
-            <element signature="e#4138#4157#0" expanded="true" />
-            <element signature="e#4530#4549#0" expanded="true" />
-            <element signature="e#5251#5270#0" expanded="true" />
-            <element signature="e#6882#6899#0" expanded="true" />
-            <element signature="e#7219#7238#0" expanded="true" />
-            <element signature="e#7554#7573#0" expanded="true" />
-            <element signature="e#8209#8229#0" expanded="true" />
-            <element signature="e#9765#9782#0" expanded="true" />
-            <element signature="e#10096#10115#0" expanded="true" />
-            <element signature="e#10425#10444#0" expanded="true" />
-            <element signature="e#11288#11310#0" expanded="true" />
+            <element signature="e#1020#1040#0" expanded="false" />
+            <element signature="e#1206#1225#0" expanded="false" />
+            <element signature="e#3640#3675#0" expanded="false" />
+            <element signature="e#3871#3889#0" expanded="false" />
+            <element signature="e#6333#6350#0" expanded="false" />
+            <element signature="e#6590#6608#0" expanded="false" />
+            <element signature="e#6782#6801#0" expanded="false" />
+            <element signature="e#7041#7059#0" expanded="false" />
+            <element signature="e#7779#7807#0" expanded="false" />
+            <element signature="e#7976#8000#0" expanded="false" />
           </folding>
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameItemPicker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.896552">
+          <caret line="157" column="30" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="253" column="66" selection-start-line="253" selection-start-column="66" selection-end-line="253" selection-end-column="66" />
+          <folding>
+            <element signature="e#6070#6084#0" expanded="true" />
+            <element signature="e#7360#7368#0" expanded="true" />
+            <element signature="e#7828#7836#0" expanded="true" />
+            <element signature="e#9319#9336#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="162" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/alfamarkt/albi/GameSummary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24285714">
+          <caret line="55" column="26" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
+          <folding>
+            <element signature="e#5391#5437#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
