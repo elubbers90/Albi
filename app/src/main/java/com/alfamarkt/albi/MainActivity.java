@@ -4,9 +4,8 @@ package com.alfamarkt.albi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.*;
-import android.media.Image;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,18 +14,28 @@ import com.alfamarkt.albi.classes.Rack;
 import com.alfamarkt.albi.classes.Shelf;
 import com.alfamarkt.albi.classes.StorePlanogram;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import jxl.*;
+import jxl.biff.IntegerHelper;
 import jxl.read.biff.BiffException;
 
 
 public class MainActivity extends Activity{
     private StorePlanogram store;
+    private HashMap<Integer,Integer> inventory;
     private String storeString;
 
 
@@ -35,7 +44,9 @@ public class MainActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         try {
-            List<List<String>> result = loadXML("planogram25032015.xls");
+            List<String> inventoryList = loadInventory("inventory.txt");
+            inventory = parseInventory(inventoryList);
+            List<List<String>> result = loadXML("planogram.xls");
             store = parseXML(result);
             storeString = store.toString();
             if(!result.isEmpty()) {
@@ -85,11 +96,12 @@ public class MainActivity extends Activity{
 
     private Item parseItem(List<String> row, int id) {
         Item item = new Item(id);
-        item.setHole(Integer.parseInt(row.get(1).replace(" ","")));
-        item.setSubDept(Integer.parseInt(row.get(3).replace(" ","")));
+        item.setHole(Integer.parseInt(row.get(1).replace(" ", "")));
+        item.setSubDept(Integer.parseInt(row.get(3).replace(" ", "")));
         item.setPosition(row.get(4));
-        item.setNoUrut(Integer.parseInt(row.get(5).replace(" ","")));
-        item.setSku(Integer.parseInt(row.get(6).replace(" ","")));
+        item.setNoUrut(Integer.parseInt(row.get(5).replace(" ", "")));
+        int sku = Integer.parseInt(row.get(6).replace(" ", ""));
+        item.setSku(sku);
         item.setDescription(row.get(7));
         item.setTierKK(Integer.parseInt(row.get(8).replace(" ","")));
         item.setTierDB(Integer.parseInt(row.get(9).replace(" ","")));
@@ -99,10 +111,11 @@ public class MainActivity extends Activity{
         item.setStock(Integer.parseInt(row.get(13).replace(" ","")));
         item.setTag(row.get(14));
         item.setCls(row.get(15));
-        // TODO make the correct checking of the inventory with an excel
-        Random generator = new Random();
-        int inv = generator.nextInt(10);
-        item.setInventory(inv);
+        if(inventory.containsKey(Integer.valueOf(sku))){
+            item.setInventory(inventory.get(Integer.valueOf(sku)));
+        } else {
+            item.setInventory(0);
+        }
         return item;
     }
 
@@ -140,31 +153,72 @@ public class MainActivity extends Activity{
 
     private Shelf parseShelf(String firstCell, int id){
         Shelf shelf = new Shelf(id);
-        shelf.setNumber(Integer.parseInt(firstCell.replace(" ","")));
+        shelf.setNumber(Integer.parseInt(firstCell.replace(" ", "")));
         return shelf;
     }
 
     public List<List<String>> loadXML(String inputFile) throws IOException {
         List<List<String>> result = new ArrayList<List<String>>();
-        InputStream in = getAssets().open(inputFile);
-
-        if (in!=null){
-            Workbook w;
-            try {
+        File sdcard = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS);
+        File file = new File(sdcard,inputFile);
+        Workbook w;
+        try {
+            if(file.exists()){
+                w = Workbook.getWorkbook(file);
+            } else {
+                InputStream in = getAssets().open(inputFile);
                 w = Workbook.getWorkbook(in);
-                // Get the first sheet
-                Sheet sheet = w.getSheet(0);
-                // Loop over column and lines
-                for (int j = 0; j < sheet.getRows(); j++) {
-                    List<String> row = new ArrayList<String>();
-                    for (int i = 0; i < sheet.getColumns(); i++) {
-                        Cell cel = sheet.getCell(i, j);
-                        row.add(cel.getContents());
-                    }
-                    result.add(row);
+            }
+            // Get the first sheet
+            Sheet sheet = w.getSheet(0);
+            // Loop over column and lines
+            for (int j = 0; j < sheet.getRows(); j++) {
+                List<String> row = new ArrayList<String>();
+                for (int i = 0; i < sheet.getColumns(); i++) {
+                    Cell cel = sheet.getCell(i, j);
+                    row.add(cel.getContents());
                 }
-            } catch (BiffException e) {
-                e.printStackTrace();
+                result.add(row);
+            }
+        } catch (BiffException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public List<String> loadInventory(String inputFile) throws IOException{
+        List<String> result = new ArrayList<String>();
+        File sdcard = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS);
+        File file = new File(sdcard,inputFile);
+        try {
+            BufferedReader br;
+            if(file.exists()){
+                br = new BufferedReader(new FileReader(file));
+            } else {
+                InputStream in = getAssets().open(inputFile);
+                br = new BufferedReader(new InputStreamReader(in));
+            }
+            String line;
+            while ((line = br.readLine()) != null) {
+                result.add(line);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public HashMap<Integer,Integer> parseInventory(List<String> input){
+        HashMap<Integer,Integer> result = new HashMap<Integer,Integer>();
+        for(int i=0;i<input.size();i++) {
+            String[] splitted = input.get(i).split("\t");
+            if (splitted.length == 4) {
+                Integer sku = Integer.valueOf(splitted[1].split("\\.")[0]);
+                Integer inventory = Integer.valueOf(splitted[3].split("\\.")[0]);
+                result.put(sku,inventory);
             }
         }
         return result;
