@@ -151,14 +151,14 @@
                                 android:text="@string/product"
                                 android:layout_height="match_parent"
                                 android:layout_width="0dip"
-                                android:layout_weight="0.55"
+                                android:layout_weight="0.70"
                                 />
                             <TextView
                                 android:id="@+id/item"
                                 android:text="@string/inventory"
                                 android:layout_height="match_parent"
                                 android:layout_width="0dip"
-                                android:layout_weight="0.45"
+                                android:layout_weight="0.30"
                                 />
                         </TableRow>
 

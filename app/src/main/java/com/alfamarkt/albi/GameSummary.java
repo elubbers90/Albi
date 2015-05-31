@@ -77,8 +77,12 @@ public class GameSummary extends Activity {
                     Item item = items.get(j);
                     if (item.getChecked()) {
                         TableRow newRow = new TableRow(this);
+                        newRow.setWeightSum(1f);
+                        newRow.setPadding(0,30,0,30);
+                        newRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
                         TextView name = new TextView(this);
                         name.setText(item.getDescription());
+                        name.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.55f));
                         newRow.addView(name);
                         TextView onDisplay = new TextView(this);
                         if(item.onDisplay){
@@ -86,16 +90,33 @@ public class GameSummary extends Activity {
                         } else {
                             onDisplay.setText("No");
                         }
+                        onDisplay.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.25f));
                         newRow.addView(onDisplay);
                         TextView inventory = new TextView(this);
                         inventory.setText(String.valueOf(item.getInventory()));
+                        inventory.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.20f));
                         newRow.addView(inventory);
                         if(!item.getOnDisplay() && item.getRestocked()){
+                            if(tbl1.getChildCount() % 2 == 0){
+                                newRow.setBackgroundColor(Color.WHITE);
+                            } else {
+                                newRow.setBackgroundColor(Color.parseColor("#F0F2F1"));
+                            }
                             tbl1.addView(newRow);
                         } else if(item.getOnDisplay()){
+                            if(tbl2.getChildCount() % 2 == 0){
+                                newRow.setBackgroundColor(Color.WHITE);
+                            } else {
+                                newRow.setBackgroundColor(Color.parseColor("#F0F2F1"));
+                            }
                             tbl2.addView(newRow);
                         } else {
                             tbl3.addView(newRow);
+                            if(tbl3.getChildCount() % 2 == 0){
+                                newRow.setBackgroundColor(Color.WHITE);
+                            } else {
+                                newRow.setBackgroundColor(Color.parseColor("#F0F2F1"));
+                            }
                         }
                     }
                 }

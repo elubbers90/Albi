@@ -6,25 +6,39 @@
     android:weightSum="1">
 
     <RelativeLayout
-        android:id="@+id/relativeGame1"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.30">
+        android:layout_weight="0.15"></RelativeLayout>
 
-        <TextView android:text="Rack 1, Shelf 1" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/gameProgress"
-            android:layout_marginTop="77dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.07">
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/itemSKU"
+            android:textSize="24dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
+    </RelativeLayout>
 
-        <TextView android:text="12345 - Warsteiner Radler" android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.03">
+
+        <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/itemText"
-            android:layout_marginTop="52dp"
-            android:layout_below="@+id/gameProgress"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.05"></RelativeLayout>
+
 
 
     <RelativeLayout
@@ -44,13 +58,16 @@
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:onClick="addPhoto">
+                android:onClick="addPhoto"
+                android:background="@drawable/border">
 
                 <ImageView
                     android:id="@+id/imageitem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/camera"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true" />
             </RelativeLayout>
@@ -61,26 +78,32 @@
         </LinearLayout>
     </RelativeLayout>
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.05"></RelativeLayout>
+
+
     <RelativeLayout
         android:id="@+id/relativeGame3"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.10">
-        <LinearLayout
+        android:layout_weight="0.20">
+        <com.alfamarkt.albi.androidOverriders.ItemPickerLinearLayout
             android:id="@+id/linearButtonsGameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25"></RelativeLayout>
+                android:layout_weight="0.1"></RelativeLayout>
             <Button
                 android:id="@+id/btnInStock"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="0.10"
-                android:text="@string/Yes"
-                android:onClick="inStock" />
+                android:layout_weight="0.25"
+                android:background="@drawable/checkmarkgrey" />
 
             <RelativeLayout
                 android:layout_width="0dip"
@@ -90,22 +113,20 @@
                 android:id="@+id/btnNotInStock"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="0.10"
-                android:text="@string/No"
-                android:onClick="notInStock"
-                android:layout_alignTop="@+id/btnInStock" />
+                android:layout_weight="0.25"
+                android:background="@drawable/xgrey"/>
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25"></RelativeLayout>
-        </LinearLayout>
+                android:layout_weight="0.1"></RelativeLayout>
+        </com.alfamarkt.albi.androidOverriders.ItemPickerLinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relativeGame4"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.25"> </RelativeLayout>
+        android:layout_weight="0.1"> </RelativeLayout>
 
 
 </LinearLayout>

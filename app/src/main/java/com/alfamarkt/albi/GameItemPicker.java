@@ -5,14 +5,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alfamarkt.albi.classes.Item;
@@ -56,13 +61,46 @@ public class GameItemPicker extends Activity {
             rack = store.getRacks().get(rackIndex);
         }
         setContentView(R.layout.activity_game_item_picker);
+
+        /*final Button but1 = (Button) findViewById(R.id.btnInStock);
+        but1.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    but1.setBackgroundResource(R.drawable.checkmarkgreen);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    but1.setBackgroundResource(R.drawable.checkmarkgrey);
+                    inStock(v);
+                } else {
+                    but1.setBackgroundResource(R.drawable.checkmarkgrey);
+                }
+                return true;
+            }
+        });
+        final Button but2 = (Button) findViewById(R.id.btnNotInStock);
+        but2.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    but2.setBackgroundResource(R.drawable.xred);
+                } else if(event.getAction() == MotionEvent.ACTION_UP){
+                    but2.setBackgroundResource(R.drawable.xgrey);
+                    notInStock(v);
+                } else {
+                    but2.setBackgroundResource(R.drawable.xgrey);
+                }
+                return true;
+            }
+        });*/
         setNextItem();
     }
 
     private void setNextItem() {
-        TextView itemText = (TextView)findViewById(R.id.itemText);
         Item item = rack.getShelves().get(shelfIndex).getItems().get(itemIndex);
-        itemText.setText(item.getSku() + " - " + item.getDescription());
+        TextView itemSKU = (TextView)findViewById(R.id.itemSKU);
+        itemSKU.setText(String.valueOf(item.getSku()));
+        TextView itemText = (TextView)findViewById(R.id.itemText);
+        itemText.setText(item.getDescription());
         tryLoadImage(String.valueOf(item.getSku()) + ".jpg");
     }
 
@@ -110,7 +148,7 @@ public class GameItemPicker extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void inStock(View view){
+    public void inStock(){
         if(shelfIndex<rack.getShelves().size() && itemIndex<rack.getShelves().get(shelfIndex).getItems().size()) {
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setChecked(true);
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOnDisplay(true);
@@ -131,7 +169,7 @@ public class GameItemPicker extends Activity {
         }
     }
 
-    public void notInStock(View view){
+    public void notInStock(){
         if(shelfIndex<rack.getShelves().size() && itemIndex<rack.getShelves().get(shelfIndex).getItems().size()) {
             incorrectItems=true;
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setChecked(true);
@@ -192,12 +230,21 @@ public class GameItemPicker extends Activity {
         if (path != null) {
             File file = new File(path, imageFileName);
             ImageView view = (ImageView) findViewById(R.id.imageitem);
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.WRAP_CONTENT,
+            RelativeLayout.LayoutParams.WRAP_CONTENT);
             if(file.exists()){
                 Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                 view.setImageBitmap(myBitmap);
+                view.setPadding(10, 10, 10, 10);
+                lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
             } else {
                view.setImageResource(R.drawable.camera);
+                view.setPadding(0, 10, 10, 0);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
             }
+            view.setLayoutParams(lp);
         }
 
     }

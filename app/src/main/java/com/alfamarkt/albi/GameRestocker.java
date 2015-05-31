@@ -74,6 +74,7 @@ public class GameRestocker extends Activity {
                             if(item.getInventory()>0) {
                                 TableRow newRow = new TableRow(this);
                                 newRow.setWeightSum(1f);
+                                newRow.setPadding(0,30,0,30);
                                 newRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
                                 if(tbl.getChildCount() % 2 == 0){
                                     newRow.setBackgroundColor(Color.WHITE);
@@ -84,13 +85,13 @@ public class GameRestocker extends Activity {
 
                                 TextView name = new TextView(this);
                                 name.setText(item.getDescription());
-                                name.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.54f));
+                                name.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.70f));
                                 newRow.addView(name);
 
 
                                 TextView inventory = new TextView(this);
                                 inventory.setText(String.valueOf(item.getInventory()));
-                                inventory.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.16f));
+                                inventory.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.10f));
                                 inventory.setPadding(1,0,0,0);
                                 newRow.addView(inventory);
 
@@ -98,8 +99,9 @@ public class GameRestocker extends Activity {
                                 Random generator = new Random();
                                 int id = generator.nextInt(1000000) + j + i;
 
+
                                 RelativeLayout rel1 = new RelativeLayout(this);
-                                rel1.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.15f));
+                                rel1.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.05f));
                                 LinearLayout lin1 = new LinearLayout(this);
                                 lin1.setWeightSum(1f);
                                 lin1.setOrientation(LinearLayout.VERTICAL);
@@ -129,8 +131,13 @@ public class GameRestocker extends Activity {
                                 newRow.addView(rel1);
 
 
+                                RelativeLayout relempty = new RelativeLayout(this);
+                                relempty.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.05f));
+                                newRow.addView(relempty);
+
+
                                 RelativeLayout rel2 = new RelativeLayout(this);
-                                rel2.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.15f));
+                                rel2.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.05f));
                                 LinearLayout lin2 = new LinearLayout(this);
                                 lin2.setWeightSum(1f);
                                 lin2.setOrientation(LinearLayout.VERTICAL);
@@ -159,6 +166,11 @@ public class GameRestocker extends Activity {
                                 lin2.addView(btnNo);
                                 rel2.addView(lin2);
                                 newRow.addView(rel2);
+
+
+                                RelativeLayout relempty2 = new RelativeLayout(this);
+                                relempty2.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.05f));
+                                newRow.addView(relempty2);
 
 
                                 tbl.addView(newRow);

@@ -1,16 +1,62 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <TextView android:text="@string/rackSummary" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/rackSummaryHeader" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.1">
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.3"></RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.5">
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <RelativeLayout
+                        android:layout_height="fill_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.05"></RelativeLayout>
+                    <RelativeLayout
+                        android:layout_height="fill_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.95">
+                        <TextView android:text="@string/rackSummary" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/rackSummaryHeader"
+                            android:textSize="24dip"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.2"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
 <ScrollView
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
     android:scrollbars="none"
-    android:layout_below="@+id/rackSummaryHeader"
-    android:layout_above="@+id/btnCompleteRack"
+    android:layout_height="0dip"
+    android:layout_weight="0.8"
     android:id="@+id/completeScrollView">
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -27,36 +73,62 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnInventoryControl">
-
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id = "@+id/inventoryControlTable"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_height="fill_parent"
+                android:layout_width="0dip"
+                android:layout_weight="0.05"></RelativeLayout>
+                <RelativeLayout
+                    android:layout_height="fill_parent"
+                    android:layout_width="0dip"
+                    android:layout_weight="0.90">
 
-            <TableRow android:layout_height="match_parent"
-                android:layout_width="match_parent">
-                <TextView
-                    android:id="@+id/skuInvControl"
-                    android:text="@string/product"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-                <TextView
-                    android:id="@+id/displayInvControl"
-                    android:text="@string/onDisplay"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-                <TextView
-                    android:id="@+id/invInvControl"
-                    android:text="@string/inventory"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-            </TableRow>
+                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id = "@+id/inventoryControlTable"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@drawable/border">
 
-        </TableLayout>
+                        <TableRow android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:weightSum="1"
+                            android:background="@android:color/darker_gray">
+                            <TextView
+                                android:id="@+id/skuInvControl"
+                                android:text="@string/product"
+                                android:layout_height="match_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.55"
+                                />
+                            <TextView
+                                android:id="@+id/displayInvControl"
+                                android:text="@string/onDisplay"
+                                android:layout_height="match_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.25"
+                                />
+                            <TextView
+                                android:id="@+id/invInvControl"
+                                android:text="@string/inventory"
+                                android:layout_height="match_parent"
+                                android:layout_width="0dip"
+                                android:layout_weight="0.20"
+                                />
+                        </TableRow>
+
+                    </TableLayout>
+                </RelativeLayout>
+            <RelativeLayout
+                android:layout_height="fill_parent"
+                android:layout_width="0dip"
+                android:layout_weight="0.05"></RelativeLayout>
+        </LinearLayout>
 
 </RelativeLayout>
 <Button
@@ -72,37 +144,62 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnOnDisplay">
-
-
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id = "@+id/onDisplayTable"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+        <RelativeLayout
+            android:layout_height="fill_parent"
+            android:layout_width="0dip"
+            android:layout_weight="0.05"></RelativeLayout>
+        <RelativeLayout
+            android:layout_height="fill_parent"
+            android:layout_width="0dip"
+            android:layout_weight="0.90">
 
-            <TableRow android:layout_height="match_parent"
-                android:layout_width="match_parent">
-                <TextView
-                    android:id="@+id/skuOnDisplay"
-                    android:text="@string/product"
-                    android:layout_height="match_parent"
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id = "@+id/onDisplayTable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/border">
+
+                <TableRow android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    />
-                <TextView
-                    android:id="@+id/displayOnDisplay"
-                    android:text="@string/onDisplay"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-                <TextView
-                    android:id="@+id/invOnDisplay"
-                    android:text="@string/inventory"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-            </TableRow>
+                    android:weightSum="1"
+                    android:background="@android:color/darker_gray">
+                    <TextView
+                        android:id="@+id/skuOnDisplay"
+                        android:text="@string/product"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.55"
+                        />
+                    <TextView
+                        android:id="@+id/displayOnDisplay"
+                        android:text="@string/onDisplay"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.25"
+                        />
+                    <TextView
+                        android:id="@+id/invOnDisplay"
+                        android:text="@string/inventory"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.20"
+                        />
+                </TableRow>
 
         </TableLayout>
+        </RelativeLayout>
+            <RelativeLayout
+                android:layout_height="fill_parent"
+                android:layout_width="0dip"
+                android:layout_weight="0.05"></RelativeLayout>
+        </LinearLayout>
 
 </RelativeLayout>
 <Button
@@ -118,47 +215,78 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/btnOOS">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <RelativeLayout
+            android:layout_height="fill_parent"
+            android:layout_width="0dip"
+            android:layout_weight="0.05"></RelativeLayout>
+        <RelativeLayout
+            android:layout_height="fill_parent"
+            android:layout_width="0dip"
+            android:layout_weight="0.90">
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id = "@+id/oosTable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/border">
 
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id = "@+id/oosTable"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
+                <TableRow android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:weightSum="1"
+                    android:background="@android:color/darker_gray">
+                    <TextView
+                        android:id="@+id/skuOOS"
+                        android:text="@string/product"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.55"
+                        />
+                    <TextView
+                        android:id="@+id/displayOOS"
+                        android:text="@string/onDisplay"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.25"
+                        />
+                    <TextView
+                        android:id="@+id/invOOS"
+                        android:text="@string/inventory"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dip"
+                        android:layout_weight="0.20"
+                        />
+                </TableRow>
 
-            <TableRow android:layout_height="match_parent"
-                android:layout_width="match_parent">
-                <TextView
-                    android:id="@+id/skuOOS"
-                    android:text="@string/product"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-                <TextView
-                    android:id="@+id/displayOOS"
-                    android:text="@string/onDisplay"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-                <TextView
-                    android:id="@+id/invOOS"
-                    android:text="@string/inventory"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    />
-            </TableRow>
-
-        </TableLayout>
+            </TableLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_height="fill_parent"
+            android:layout_width="0dip"
+            android:layout_weight="0.05"></RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
     </RelativeLayout>
 </ScrollView>
-    <Button
-        android:id="@+id/btnCompleteRack"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/completeRack"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="completeRack"/>
 
-</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.1">
+        <Button
+            android:id="@+id/btnCompleteRack"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/completeRack"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="completeRack"/>
+    </RelativeLayout>
+</LinearLayout>
