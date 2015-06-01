@@ -235,9 +235,13 @@ public class MainActivity extends Activity{
         HashMap<Integer,Integer> result = new HashMap<Integer,Integer>();
         for(int i=0;i<input.size();i++) {
             String[] splitted = input.get(i).split("\t");
-            if (splitted.length == 4) {
-                Integer sku = Integer.valueOf(splitted[1].split("\\.")[0]);
-                Integer inventory = Integer.valueOf(splitted[3].split("\\.")[0]);
+            if (splitted.length == 4 || splitted.length==3) {
+                int index=0;
+                if (splitted.length == 4) {
+                    index=1;
+                }
+                Integer sku = Integer.valueOf(splitted[index].split("\\.")[0]);
+                Integer inventory = Integer.valueOf(splitted[index+2].split("\\.")[0]);
                 result.put(sku,inventory);
             }
         }
@@ -248,7 +252,6 @@ public class MainActivity extends Activity{
         if(storeString!=null) {
             Random generator = new Random();
             int rackIndex = generator.nextInt(store.getRacks().size());
-            rackIndex=0;
             SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("com.alfamarkt.albi.storeString",storeString);

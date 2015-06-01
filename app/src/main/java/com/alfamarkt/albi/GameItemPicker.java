@@ -61,6 +61,8 @@ public class GameItemPicker extends Activity {
             rack = store.getRacks().get(rackIndex);
         }
         setContentView(R.layout.activity_game_item_picker);
+        shelfIndex = sharedPref.getInt("com.alfamarkt.albi.shelfIndex", 0);
+        itemIndex = sharedPref.getInt("com.alfamarkt.albi.itemIndex",0);
         setNextItem();
     }
 
@@ -81,6 +83,8 @@ public class GameItemPicker extends Activity {
             SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("com.alfamarkt.albi.storeString", store.toString());
+            editor.putInt("com.alfamarkt.albi.itemIndex", 0);
+            editor.putInt("com.alfamarkt.albi.shelfIndex", 0);
             editor.apply();
             if (store != null && rackIndex != -1 && store.getChecked()) {
                 Intent intent = new Intent(this, GameRestocker.class);
@@ -175,6 +179,13 @@ public class GameItemPicker extends Activity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
+                SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("com.alfamarkt.albi.itemIndex", itemIndex);
+                editor.putInt("com.alfamarkt.albi.shelfIndex", shelfIndex);
+                editor.putString("com.alfamarkt.albi.storeString", store.toString());
+                editor.apply();
+
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                         Uri.fromFile(photoFile));
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
@@ -193,6 +204,10 @@ public class GameItemPicker extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             tryLoadImage(String.valueOf(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getSku())+".jpg");
+            SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
+            shelfIndex = sharedPref.getInt("com.alfamarkt.albi.shelfIndex",0);
+            itemIndex = sharedPref.getInt("com.alfamarkt.albi.itemIndex",0);
+            setNextItem();
         }
     }
 

@@ -97,6 +97,8 @@ public class GameActivity extends Activity {
             SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("com.alfamarkt.albi.storeString",store.toString());
+            editor.putInt("com.alfamarkt.albi.itemIndex", 0);
+            editor.putInt("com.alfamarkt.albi.shelfIndex", 0);
             editor.apply();
             Intent intent = new Intent(this, GameItemPicker.class);
             intent.putExtra("rackIndex", rackIndex);
