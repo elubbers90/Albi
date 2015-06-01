@@ -110,7 +110,7 @@ public class GameRestocker extends Activity {
                                 LinearLayout lin1 = new LinearLayout(this);
                                 lin1.setWeightSum(1f);
                                 lin1.setOrientation(LinearLayout.VERTICAL);
-                                Button btn = new Button(this);
+                                final Button btn = new Button(this);
                                 btn.setBackgroundResource(R.drawable.checkmarkgrey);
                                 btn.setId(id + 1);
                                 btn.setTag(i + "-" + j);
@@ -130,6 +130,12 @@ public class GameRestocker extends Activity {
                                         }
                                     }
                                 });
+                                rel1.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        btn.performClick();
+                                    }
+                                });
                                 btn.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, 0, 1f));
                                 lin1.addView(btn);
                                 rel1.addView(lin1);
@@ -146,7 +152,7 @@ public class GameRestocker extends Activity {
                                 LinearLayout lin2 = new LinearLayout(this);
                                 lin2.setWeightSum(1f);
                                 lin2.setOrientation(LinearLayout.VERTICAL);
-                                Button btnNo = new Button(this);
+                                final Button btnNo = new Button(this);
                                 btnNo.setBackgroundResource(R.drawable.xgrey);
                                 btnNo.setId(id);
                                 btnNo.setTag(i + "-" + j);
@@ -166,6 +172,12 @@ public class GameRestocker extends Activity {
                                         }
                                     }
 
+                                });
+                                rel2.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        btnNo.performClick();
+                                    }
                                 });
                                 btnNo.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, 0, 1f));
                                 lin2.addView(btnNo);

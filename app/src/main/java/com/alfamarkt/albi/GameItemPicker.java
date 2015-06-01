@@ -196,7 +196,8 @@ public class GameItemPicker extends Activity {
     private File createImageFile() throws IOException {
         // Create an image file name
         String imageFileName = String.valueOf(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getSku())+".jpg";
-        File path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        //File path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         return new File(path, imageFileName);
     }
 
@@ -212,7 +213,8 @@ public class GameItemPicker extends Activity {
     }
 
     private void tryLoadImage(String imageFileName){
-        File path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        //File path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         if (path != null) {
             File file = new File(path, imageFileName);
             ImageView view = (ImageView) findViewById(R.id.imageitem);
@@ -225,10 +227,21 @@ public class GameItemPicker extends Activity {
                 view.setPadding(10, 10, 10, 10);
                 lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
             } else {
-               view.setImageResource(R.drawable.camera);
-                view.setPadding(0, 10, 10, 0);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                if (path != null) {
+                    file = new File(path, imageFileName);
+                    if (file.exists()) {
+                        Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                        view.setImageBitmap(myBitmap);
+                        view.setPadding(10, 10, 10, 10);
+                        lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                    } else {
+                        view.setImageResource(R.drawable.camera);
+                        view.setPadding(0, 10, 10, 0);
+                        lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                        lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                    }
+                }
             }
             view.setLayoutParams(lp);
         }
