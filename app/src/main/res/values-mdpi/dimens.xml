@@ -5,4 +5,5 @@
     <dimen name="pageHeader">22sp</dimen>
     <dimen name="defaultTextSize">14sp</dimen>
     <dimen name="tableText">10sp</dimen>
+    <dimen name="flipperText">44sp</dimen>
 </resources>

@@ -261,4 +261,15 @@ public class MainActivity extends Activity{
             startActivity(intent);
         }
     }
+
+    public void selectRack(View view){
+        if(storeString!=null) {
+            SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("com.alfamarkt.albi.storeString",storeString);
+            editor.apply();
+            Intent intent = new Intent(this, GameSelectRack.class);
+            startActivity(intent);
+        }
+    }
 }

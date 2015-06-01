@@ -30,8 +30,10 @@
     <string name="No">No</string>
     <string name="options">Options</string>
     <string name="checkRandomRack">Check Random Rack</string>
+    <string name="checkRack">Check Rack</string>
     <string name="albiCheck">Albi Check</string>
     <string name="start">Start</string>
     <string name="personalBest">Previous Best:\n-</string>
+    <string name="title_activity_game_select_rack">GameSelectRack</string>
 
 </resources>
