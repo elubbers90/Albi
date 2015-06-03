@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,9 +18,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alfamarkt.albi.androidOverriders.PieProgressDrawable;
 import com.alfamarkt.albi.classes.Item;
 import com.alfamarkt.albi.classes.Rack;
 import com.alfamarkt.albi.classes.StorePlanogram;
@@ -40,6 +43,10 @@ public class GameItemPicker extends Activity {
     private int rackIndex = -1;
     private Boolean gameFinished = false;
     static final int REQUEST_TAKE_PHOTO = 1;
+    private int totalItems=0;
+    private int currentItem=0;
+    private ProgressBar progressBar;
+    ImageView progressPie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +70,21 @@ public class GameItemPicker extends Activity {
         setContentView(R.layout.activity_game_item_picker);
         shelfIndex = sharedPref.getInt("com.alfamarkt.albi.shelfIndex", 0);
         itemIndex = sharedPref.getInt("com.alfamarkt.albi.itemIndex",0);
+
+        for(int i=0;i<rack.getShelves().size();i++){
+            for(int j=0;j<rack.getShelves().get(i).getItems().size();j++){
+                totalItems++;
+            }
+        }
+        progressBar = (ProgressBar) findViewById(R.id.itemsProgressBar);
+        progressBar.setMax(totalItems);
+        progressBar.setProgress(currentItem);
+        progressPie = (ImageView) findViewById(R.id.shelvesProgressPie);
+        PieProgressDrawable myDrawObj = new PieProgressDrawable();
+        myDrawObj.setColor(Color.parseColor("#bebebe"));
+        myDrawObj.setLevel(0);
+        progressPie.setImageDrawable(myDrawObj);
+        progressPie.invalidate();
         setNextItem();
     }
 
@@ -122,6 +144,7 @@ public class GameItemPicker extends Activity {
     }
 
     public void inStock(){
+        updateProgressBar();
         if(shelfIndex<rack.getShelves().size() && itemIndex<rack.getShelves().get(shelfIndex).getItems().size()) {
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setChecked(true);
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOnDisplay(true);
@@ -143,6 +166,7 @@ public class GameItemPicker extends Activity {
     }
 
     public void notInStock(){
+        updateProgressBar();
         if(shelfIndex<rack.getShelves().size() && itemIndex<rack.getShelves().get(shelfIndex).getItems().size()) {
             if(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getInventory()>0) {
                 incorrectItems = true;
@@ -163,6 +187,20 @@ public class GameItemPicker extends Activity {
             }
         } else {
             stopGame();
+        }
+    }
+
+    private void updateProgressBar(){
+        currentItem++;
+        progressBar.setProgress(currentItem);
+        if(shelfIndex!=0) {
+            float shelfProgress = (float) Math.floor((shelfIndex * 100) / (rack.getShelves().size()));
+            if (shelfIndex > rack.getShelves().size() || (shelfIndex == rack.getShelves().size()-1 && itemIndex >= rack.getShelves().get(shelfIndex).getItems().size()-1)) {
+                shelfProgress=100;
+            }
+            PieProgressDrawable myDrawObj = (PieProgressDrawable) progressPie.getDrawable();
+            myDrawObj.setLevel((int) shelfProgress);
+            progressPie.invalidate();
         }
     }
 
