@@ -3,14 +3,17 @@ package com.alfamarkt.albi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -43,10 +46,11 @@ public class GameItemPicker extends Activity {
     private int rackIndex = -1;
     private Boolean gameFinished = false;
     static final int REQUEST_TAKE_PHOTO = 1;
-    private int totalItems=0;
-    private int currentItem=0;
     private ProgressBar progressBar;
-    ImageView progressPie;
+    private ImageView progressPie;
+    private File path;
+    private ImageView view;
+    private int imageWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,23 +72,31 @@ public class GameItemPicker extends Activity {
             rack = store.getRacks().get(rackIndex);
         }
         setContentView(R.layout.activity_game_item_picker);
+
+        // variables for images
+        //path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        view = (ImageView) findViewById(R.id.imageitem);
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        imageWidth = (35*size.y)/100;
+
+        // indexes to keep track of which item is currently checked
         shelfIndex = sharedPref.getInt("com.alfamarkt.albi.shelfIndex", 0);
         itemIndex = sharedPref.getInt("com.alfamarkt.albi.itemIndex",0);
 
-        for(int i=0;i<rack.getShelves().size();i++){
-            for(int j=0;j<rack.getShelves().get(i).getItems().size();j++){
-                totalItems++;
-            }
-        }
+        // for the 2 progress bars
         progressBar = (ProgressBar) findViewById(R.id.itemsProgressBar);
-        progressBar.setMax(totalItems);
-        progressBar.setProgress(currentItem);
+        progressBar.setMax(rack.getShelves().get(shelfIndex).getItems().size());
+        progressBar.setProgress(itemIndex);
         progressPie = (ImageView) findViewById(R.id.shelvesProgressPie);
         PieProgressDrawable myDrawObj = new PieProgressDrawable();
         myDrawObj.setColor(Color.parseColor("#bebebe"));
         myDrawObj.setLevel(0);
         progressPie.setImageDrawable(myDrawObj);
         progressPie.invalidate();
+
         setNextItem();
     }
 
@@ -191,13 +203,17 @@ public class GameItemPicker extends Activity {
     }
 
     private void updateProgressBar(){
-        currentItem++;
-        progressBar.setProgress(currentItem);
-        if(shelfIndex!=0) {
-            float shelfProgress = (float) Math.floor((shelfIndex * 100) / (rack.getShelves().size()));
-            if (shelfIndex > rack.getShelves().size() || (shelfIndex == rack.getShelves().size()-1 && itemIndex >= rack.getShelves().get(shelfIndex).getItems().size()-1)) {
-                shelfProgress=100;
-            }
+        if(shelfIndex < rack.getShelves().size() && itemIndex<rack.getShelves().get(shelfIndex).getItems().size()) {
+            progressBar.setMax(rack.getShelves().get(shelfIndex).getItems().size());
+            progressBar.setProgress(itemIndex+1);
+        }
+        float shelfProgress = 0f;
+        if (shelfIndex > rack.getShelves().size() || (shelfIndex == rack.getShelves().size()-1 && itemIndex >= rack.getShelves().get(shelfIndex).getItems().size()-1)) {
+            shelfProgress=100;
+        } else if(itemIndex+1==rack.getShelves().get(shelfIndex).getItems().size()){
+            shelfProgress  =(float) Math.floor(((shelfIndex+1) * 100) / (rack.getShelves().size()));
+        }
+        if(shelfProgress!=0f) {
             PieProgressDrawable myDrawObj = (PieProgressDrawable) progressPie.getDrawable();
             myDrawObj.setLevel((int) shelfProgress);
             progressPie.invalidate();
@@ -234,8 +250,6 @@ public class GameItemPicker extends Activity {
     private File createImageFile() throws IOException {
         // Create an image file name
         String imageFileName = String.valueOf(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getSku())+".jpg";
-        //File path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         return new File(path, imageFileName);
     }
 
@@ -251,38 +265,61 @@ public class GameItemPicker extends Activity {
     }
 
     private void tryLoadImage(String imageFileName){
-        //File path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         if (path != null) {
             File file = new File(path, imageFileName);
-            ImageView view = (ImageView) findViewById(R.id.imageitem);
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT,
             RelativeLayout.LayoutParams.WRAP_CONTENT);
             if(file.exists()){
-                Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                view.setImageBitmap(myBitmap);
+                view.setImageBitmap( decodeSampledBitmapFromResource(file.getAbsolutePath(), imageWidth/2, imageWidth/2));
                 view.setPadding(10, 10, 10, 10);
                 lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
             } else {
-                path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-                if (path != null) {
-                    file = new File(path, imageFileName);
-                    if (file.exists()) {
-                        Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                        view.setImageBitmap(myBitmap);
-                        view.setPadding(10, 10, 10, 10);
-                        lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                    } else {
-                        view.setImageResource(R.drawable.camera);
-                        view.setPadding(0, 10, 10, 0);
-                        lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                        lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-                    }
-                }
+                view.setImageResource(R.drawable.camera);
+                view.setPadding(0, 10, 10, 0);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
             }
             view.setLayoutParams(lp);
         }
+    }
 
+    public static Bitmap decodeSampledBitmapFromResource(String absolutePath,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(absolutePath, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(absolutePath, options);
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
     }
 }

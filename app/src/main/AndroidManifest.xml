@@ -79,6 +79,7 @@
             android:name=".GameSelectRack"
             android:label="@string/title_activity_game_select_rack" >
         </activity>
+        <receiver android:name=".Utilities.AlarmReceiver" />
     </application>
 
 </manifest>

@@ -1,16 +1,24 @@
 
 package com.alfamarkt.albi;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 
+import com.alfamarkt.albi.Utilities.AlarmReceiver;
 import com.alfamarkt.albi.classes.Item;
 import com.alfamarkt.albi.classes.Rack;
 import com.alfamarkt.albi.classes.Shelf;
@@ -23,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -54,6 +63,8 @@ public class MainActivity extends Activity{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        scheduleNotification(getNotification("Test Description"), 30000);
     }
 
     public StorePlanogram parseXML(List<List<String>> xml){
@@ -271,5 +282,31 @@ public class MainActivity extends Activity{
             Intent intent = new Intent(this, GameSelectRack.class);
             startActivity(intent);
         }
+    }
+
+    private void scheduleNotification(Notification notification, int delay) {
+
+        Intent notificationIntent = new Intent(this, AlarmReceiver.class);
+        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+        // Set the alarm to start at 8:30 a.m.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 6);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private Notification getNotification(String content) {
+        Notification.Builder builder = new Notification.Builder(this);
+        builder.setContentTitle("The title");
+        builder.setContentText(content);
+        builder.setSmallIcon(R.drawable.albilogo);
+        return builder.build();
     }
 }
