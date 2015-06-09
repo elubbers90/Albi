@@ -35,5 +35,8 @@
     <string name="start">Start</string>
     <string name="personalBest">Previous Best:\n-</string>
     <string name="title_activity_game_select_rack">GameSelectRack</string>
+    <string name="title_activity_manage_users">ManageUsersActivity</string>
+    <string name="changeUser">Change User</string>
+    <string name="createUser">Create New User</string>
 
 </resources>

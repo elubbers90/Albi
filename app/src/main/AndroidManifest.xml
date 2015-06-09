@@ -77,9 +77,17 @@
         </activity>
         <activity
             android:name=".GameSelectRack"
-            android:label="@string/title_activity_game_select_rack" >
+            android:label="@string/title_activity_game_select_rack"
+            android:screenOrientation="portrait" >
         </activity>
+
         <receiver android:name=".Utilities.AlarmReceiver" />
+
+        <activity
+            android:name=".ManageUsersActivity"
+            android:label="@string/title_activity_manage_users"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,104 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="0dip"
+        android:layout_weight="0.1"
+        android:focusable="true"
+        android:focusableInTouchMode="true" ></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="0dip"
+        android:layout_weight="0.8">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.1">
+                <TextView android:text="@string/changeUser" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/changeUser"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/pageHeader"/>
+            </RelativeLayout>
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.65"
+                android:id="@+id/scrollViewUsers">
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:id="@+id/mainLinearLayout"
+                    android:orientation="vertical">
+                    <!--<RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100sp"
+                        android:background="@drawable/bordersmall">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="1"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="0dip"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2f"
+                                android:src="@drawable/user1"/>
+                            <EditText
+                                android:layout_width="0dip"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.8f"
+                                android:textSize="@dimen/defaultTextSize"
+                                android:text="Enter Name"/>
+                        </LinearLayout>
+                    </RelativeLayout>-->
+                </LinearLayout>
+
+            </ScrollView>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.05">
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.15">
+                <Button
+                    android:id="@+id/btnCreateUser"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="@string/createUser"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/defaultTextSize"
+                    android:onClick="createUser"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.05"></RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="0dip"
+        android:layout_weight="0.1">
+
+    </RelativeLayout>
+
+</LinearLayout>

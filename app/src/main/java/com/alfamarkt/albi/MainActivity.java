@@ -64,7 +64,7 @@ public class MainActivity extends Activity{
             e.printStackTrace();
         }
 
-        scheduleNotification(getNotification("Test Description"), 30000);
+        //scheduleNotification(getNotification("Test Description"), 30000);
     }
 
     public StorePlanogram parseXML(List<List<String>> xml){
@@ -259,6 +259,17 @@ public class MainActivity extends Activity{
         return result;
     }
 
+    public void openUsers(View view){
+        if(storeString!=null) {
+            SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("com.alfamarkt.albi.storeString",storeString);
+            editor.apply();
+            Intent intent = new Intent(this, ManageUsersActivity.class);
+            startActivity(intent);
+        }
+    }
+
     public void playGame(View view){
         if(storeString!=null) {
             Random generator = new Random();
@@ -296,9 +307,9 @@ public class MainActivity extends Activity{
         // Set the alarm to start at 8:30 a.m.
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 6);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 30);
+       // alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),  pendingIntent);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

@@ -8,12 +8,12 @@
     <RelativeLayout
         android:layout_height="fill_parent"
         android:layout_width="0dip"
-        android:layout_weight="0.15"></RelativeLayout>
+        android:layout_weight="0.17"></RelativeLayout>
 
     <RelativeLayout
         android:layout_height="fill_parent"
         android:layout_width="0dip"
-        android:layout_weight="0.7">
+        android:layout_weight="0.66">
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -83,6 +83,33 @@
     <RelativeLayout
         android:layout_height="fill_parent"
         android:layout_width="0dip"
-        android:layout_weight="0.15"></RelativeLayout>
+        android:layout_weight="0.17">
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.1"
+                android:layout_marginRight="1sp"
+                android:background="@drawable/bordersmall"
+                android:onClick="openUsers">
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/user"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.90">
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>
