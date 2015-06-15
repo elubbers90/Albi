@@ -107,4 +107,14 @@ public class StorePlanogram {
         }
         return storePlanogram;
     }
+
+    public Item findItem(int sku){
+        for(int i=0;i<racks.size();i++){
+            Item item = racks.get(i).findItem(sku);
+            if(item!=null){
+                return item;
+            }
+        }
+        return null;
+    }
 }

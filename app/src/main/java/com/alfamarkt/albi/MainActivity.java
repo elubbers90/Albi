@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaScannerConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,20 +25,28 @@ import com.alfamarkt.albi.classes.Rack;
 import com.alfamarkt.albi.classes.Shelf;
 import com.alfamarkt.albi.classes.StorePlanogram;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import jxl.*;
 import jxl.biff.IntegerHelper;
@@ -54,17 +63,34 @@ public class MainActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            List<String> inventoryList = loadInventory("inventory.txt");
-            inventory = parseInventory(inventoryList);
-            List<List<String>> result = loadXML("planogram.xls");
-            store = parseXML(result);
-            storeString = store.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         //scheduleNotification(getNotification("Test Description"), 30000);
+    }
+
+    public StorePlanogram combineStores(StorePlanogram store, StorePlanogram newStore){
+        if(store==null){
+            return newStore;
+        } else if(newStore==null){
+            return store;
+        } else {
+            for(int i=0;i<newStore.getRacks().size();i++){
+                Rack rack = newStore.getRacks().get(i);
+                for(int j=0;j<rack.getShelves().size();j++){
+                    Shelf shelf = rack.getShelves().get(j);
+                    for(int k=0;k<shelf.getItems().size();k++){
+                        Item item = shelf.getItems().get(k);
+                        Item oldItem = store.findItem(item.getSku());
+                        if(oldItem!=null) {
+                            item.setOutOfStockSince(oldItem.getOutOfStockSince());
+                            item.setOutOfStock(oldItem.getOutOfStock());
+                            item.setRestocked(oldItem.getRestocked());
+                            item.setLastCheckedDate(oldItem.getLastCheckedDate());
+                        }
+                    }
+                }
+            }
+            return newStore;
+        }
     }
 
     public StorePlanogram parseXML(List<List<String>> xml){
@@ -182,7 +208,7 @@ public class MainActivity extends Activity{
                 w = Workbook.getWorkbook(in);
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("Planogram not loaded");
-                alertDialog.setMessage("The planogram excel has not be found in the Downloads folder.");
+                alertDialog.setMessage("The planogram excel was not found in the Downloads folder.");
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -222,7 +248,7 @@ public class MainActivity extends Activity{
                 br = new BufferedReader(new InputStreamReader(in));
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("Inventory not loaded");
-                alertDialog.setMessage("The inventory file has not be found in the Downloads folder.");
+                alertDialog.setMessage("The inventory file was not found in the Downloads folder.");
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -271,13 +297,10 @@ public class MainActivity extends Activity{
     }
 
     public void playGame(View view){
-        if(storeString!=null) {
+        loadStore();
+        if(store!=null) {
             Random generator = new Random();
             int rackIndex = generator.nextInt(store.getRacks().size());
-            SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString("com.alfamarkt.albi.storeString",storeString);
-            editor.apply();
             Intent intent = new Intent(this, GameActivity.class);
             intent.putExtra("rackIndex", rackIndex);
             startActivity(intent);
@@ -285,13 +308,88 @@ public class MainActivity extends Activity{
     }
 
     public void selectRack(View view){
-        if(storeString!=null) {
-            SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
+        loadStore();
+        if(store!=null) {
+            Intent intent = new Intent(this, GameSelectRack.class);
+            startActivity(intent);
+        }
+    }
+
+    public void loadStore(){
+        SharedPreferences sharedPref = this.getSharedPreferences("com.alfamarkt.albi", MODE_PRIVATE);
+        storeString = sharedPref.getString("com.alfamarkt.albi.storeString", "");
+        JSONObject json = null;
+        if(!storeString.equals("")) {
+            try {
+                json = new JSONObject(storeString);
+                store = StorePlanogram.jsonToStore(json);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            List<String> inventoryList = loadInventory("inventory.txt");
+            inventory = parseInventory(inventoryList);
+            List<List<String>> result = loadXML("planogram.xls");
+            StorePlanogram newStore = parseXML(result);
+            store = combineStores(store,newStore);
+            storeString = store.toString();
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("com.alfamarkt.albi.storeString",storeString);
             editor.apply();
-            Intent intent = new Intent(this, GameSelectRack.class);
-            startActivity(intent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createReport(View view){
+       loadStore();
+        if(store!=null) {
+            BufferedWriter output = null;
+            try {
+                File file = new File(Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_DOWNLOADS), "report" +new SimpleDateFormat("dd-MM-yyyy").format(new Date())+ ".csv");
+                if(file.exists()){
+                    file.delete();
+                }
+                output = new BufferedWriter(new FileWriter(file));
+                output.write("SKU;Desc;Last Check Date;#Days OOS");
+                output.newLine();
+                for(int i=0;i<store.getRacks().size();i++){
+                    Rack rack = store.getRacks().get(i);
+                    for(int j=0;j<rack.getShelves().size();j++){
+                        Shelf shelf = rack.getShelves().get(j);
+                        for(int k=0;k<shelf.getItems().size();k++){
+                            Item item = shelf.getItems().get(k);
+                            if (item.getOutOfStock()) {
+                                long diff = new Date().getTime() - item.getOutOfStockSince().getTime();
+                                output.write(item.getSku() + ";" + item.getDescription() + ";" + new SimpleDateFormat("dd-MM-yyyy").format(item.getLastCheckedDate()) + ";" + (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + 1));
+                                output.newLine();
+                            }
+                        }
+                    }
+                }
+
+                output.close();
+
+                MediaScannerConnection.scanFile(this,
+                        new String[]{file.toString()}, null, null);
+
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setTitle("Weekly Report Created");
+                alertDialog.setMessage("Report saved in the Downloads Directory.");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+
+            } catch ( IOException e ) {
+                e.printStackTrace();
+            }
         }
     }
 

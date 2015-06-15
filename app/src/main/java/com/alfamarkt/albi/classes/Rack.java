@@ -121,4 +121,14 @@ public class Rack {
         return racks;
     }
 
+    public Item findItem(int sku){
+        for(int i=0;i<shelves.size();i++){
+            Item item = shelves.get(i).findItem(sku);
+            if(item!=null){
+                return item;
+            }
+        }
+        return null;
+    }
+
 }

@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +31,10 @@ public class Item {
     public Boolean checked=false;
     public Boolean onDisplay =false;
     public Boolean restocked=false;
+    public Boolean outOfStock=false;
+    public Date outOfStockSince = new Date();
+
+    public Date lastCheckedDate = null;
 
     public Item() {
     }
@@ -39,7 +44,7 @@ public class Item {
         this.id = id;
     }
 
-    public Item(int id, int hole, int subDept, String position, int noUrut, int sku, String description, int tierKK, int tierDB, int tierAB, int capacity, int minDisplay, int stock, String tag, String cls, Boolean checked, Boolean onDisplay, Boolean restocked, int inventory) {
+    public Item(int id, int hole, int subDept, String position, int noUrut, int sku, String description, int tierKK, int tierDB, int tierAB, int capacity, int minDisplay, int stock, String tag, String cls, Boolean checked, Boolean onDisplay, Boolean restocked, int inventory, Boolean outOfStock, Date outOfStockSince, Date lastCheckedDate) {
         this.id = id;
         this.hole = hole;
         this.subDept = subDept;
@@ -59,6 +64,9 @@ public class Item {
         this.onDisplay = onDisplay;
         this.restocked = restocked;
         this.inventory = inventory;
+        this.outOfStock =outOfStock;
+        this.outOfStockSince=outOfStockSince;
+        this.lastCheckedDate=lastCheckedDate;
     }
 
     public int getId() {
@@ -214,6 +222,30 @@ public class Item {
         this.restocked = restocked;
     }
 
+    public void setOutOfStock(Boolean outOfStock) {
+        this.outOfStock = outOfStock;
+    }
+
+    public Boolean getOutOfStock() {
+        return outOfStock;
+    }
+
+    public Date getOutOfStockSince() {
+        return outOfStockSince;
+    }
+
+    public void setOutOfStockSince(Date outOfStockSince) {
+        this.outOfStockSince = outOfStockSince;
+    }
+
+    public Date getLastCheckedDate() {
+        return lastCheckedDate;
+    }
+
+    public void setLastCheckedDate(Date lastCheckedDate) {
+        this.lastCheckedDate = lastCheckedDate;
+    }
+
     public String toString(){
         String result = "{\"id\":";
         result+=id;
@@ -253,6 +285,14 @@ public class Item {
         result+= onDisplay;
         result+=",\"restocked\":";
         result+=restocked;
+        result+=",\"outOfStock\":";
+        result+=outOfStock;
+        result+=",\"outOfStockSince\":";
+        result+=outOfStockSince.getTime();
+        if(lastCheckedDate!=null){
+            result+=",\"lastCheckedDate\":";
+            result+=lastCheckedDate.getTime();
+        }
         result+="}";
         return result;
     }
@@ -282,6 +322,12 @@ public class Item {
                 item.setChecked(jsonObject.getBoolean("checked"));
                 item.setOnDisplay(jsonObject.getBoolean("onDisplay"));
                 item.setRestocked(jsonObject.getBoolean("restocked"));
+                item.setOutOfStock(jsonObject.getBoolean("outOfStock"));
+                item.setOutOfStockSince(new Date(jsonObject.getLong("outOfStockSince")));
+                long lastchecklong =  jsonObject.optLong("outOfStockSince", -1);
+                if(lastchecklong!=-1){
+                    item.setLastCheckedDate(new Date(lastchecklong));
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

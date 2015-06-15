@@ -96,4 +96,14 @@ public class Shelf {
         return shelves;
     }
 
+    public Item findItem(int sku){
+        for(int i=0;i<items.size();i++){
+            Item item = items.get(i);
+            if(item.getSku() == sku){
+                return item;
+            }
+        }
+        return null;
+    }
+
 }

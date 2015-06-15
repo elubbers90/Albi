@@ -35,6 +35,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 
 public class GameItemPicker extends Activity {
@@ -160,6 +161,7 @@ public class GameItemPicker extends Activity {
         if(shelfIndex<rack.getShelves().size() && itemIndex<rack.getShelves().get(shelfIndex).getItems().size()) {
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setChecked(true);
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOnDisplay(true);
+            rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOutOfStock(false);
             itemIndex++;
             if(itemIndex>=rack.getShelves().get(shelfIndex).getItems().size()){
                 itemIndex=0;
@@ -185,6 +187,14 @@ public class GameItemPicker extends Activity {
             }
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setChecked(true);
             rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOnDisplay(false);
+            if(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getInventory()>0){
+                rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOutOfStock(false);
+            } else {
+                if(!rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getOutOfStock()) {
+                    rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOutOfStock(true);
+                    rack.getShelves().get(shelfIndex).getItems().get(itemIndex).setOutOfStockSince(new Date());
+                }
+            }
             itemIndex++;
             if(itemIndex>=rack.getShelves().get(shelfIndex).getItems().size()){
                 itemIndex=0;
@@ -208,9 +218,9 @@ public class GameItemPicker extends Activity {
             progressBar.setProgress(itemIndex+1);
         }
         float shelfProgress = 0f;
-        if (shelfIndex > rack.getShelves().size() || (shelfIndex == rack.getShelves().size()-1 && itemIndex >= rack.getShelves().get(shelfIndex).getItems().size()-1)) {
+        if (shelfIndex >= rack.getShelves().size() || (shelfIndex == rack.getShelves().size()-1 && itemIndex >= rack.getShelves().get(shelfIndex).getItems().size()-1)) {
             shelfProgress=100;
-        } else if(itemIndex+1==rack.getShelves().get(shelfIndex).getItems().size()){
+        } else if(shelfIndex < rack.getShelves().size() && itemIndex+1==rack.getShelves().get(shelfIndex).getItems().size()){
             shelfProgress  =(float) Math.floor(((shelfIndex+1) * 100) / (rack.getShelves().size()));
         }
         if(shelfProgress!=0f) {

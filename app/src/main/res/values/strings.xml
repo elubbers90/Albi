@@ -38,5 +38,6 @@
     <string name="title_activity_manage_users">ManageUsersActivity</string>
     <string name="changeUser">Change User</string>
     <string name="createUser">Create New User</string>
+    <string name="createWeeklyReport">Create Weekly Report</string>
 
 </resources>

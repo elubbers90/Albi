@@ -34,7 +34,7 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="0dip"
-                android:layout_weight="0.35">
+                android:layout_weight="0.3">
                 <Button
                     android:id="@+id/btnCheckRandomRack"
                     android:layout_width="fill_parent"
@@ -62,7 +62,7 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="0dip"
-                android:layout_weight="0.35">
+                android:layout_weight="0.3">
                 <Button
                     android:id="@+id/btnCheckSpecificRack"
                     android:layout_width="fill_parent"
@@ -72,6 +72,20 @@
                     android:layout_centerHorizontal="true"
                     android:textSize="@dimen/defaultTextSize"
                     android:onClick="selectRack"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.1">
+                <Button
+                    android:id="@+id/btnCreateReport"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="@string/createWeeklyReport"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/defaultTextSize"
+                    android:onClick="createReport"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="fill_parent"
