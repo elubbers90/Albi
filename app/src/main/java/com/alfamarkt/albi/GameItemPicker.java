@@ -7,7 +7,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Point;
+import android.media.ExifInterface;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
@@ -47,10 +50,13 @@ public class GameItemPicker extends Activity {
     private int rackIndex = -1;
     private Boolean gameFinished = false;
     static final int REQUEST_TAKE_PHOTO = 1;
+    public static final int CAPTURE_IMAGE_THUMBNAIL_ACTIVITY_REQUEST_CODE = 1888;
+    private RelativeLayout photoHolder;
     private ProgressBar progressBar;
     private ImageView progressPie;
     private File path;
     private ImageView view;
+    private ImageView viewCamera;
     private int imageWidth;
 
     @Override
@@ -78,6 +84,7 @@ public class GameItemPicker extends Activity {
         //path = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         view = (ImageView) findViewById(R.id.imageitem);
+        viewCamera = (ImageView) findViewById(R.id.imageitemcamera);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -97,6 +104,26 @@ public class GameItemPicker extends Activity {
         myDrawObj.setLevel(0);
         progressPie.setImageDrawable(myDrawObj);
         progressPie.invalidate();
+
+        // set the holder of the photos, to enable/disable the onclicks
+        photoHolder = (RelativeLayout) findViewById(R.id.photoOnclickHolder);
+
+        // style the image views correctly
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+        RelativeLayout.LayoutParams.MATCH_PARENT,
+        RelativeLayout.LayoutParams.MATCH_PARENT);
+        view.setPadding(10, 10, 10, 10);
+        lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        view.setLayoutParams(lp);
+
+        RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT);
+        viewCamera.setImageResource(R.drawable.camera3);
+        viewCamera.setPadding(0, 10, 10, 0);
+        lp2.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        lp2.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        viewCamera.setLayoutParams(lp2);
 
         setNextItem();
     }
@@ -229,7 +256,7 @@ public class GameItemPicker extends Activity {
             progressPie.invalidate();
         }
     }
-
+/*
     public void addPhoto(View view){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -257,12 +284,6 @@ public class GameItemPicker extends Activity {
         }
     }
 
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String imageFileName = String.valueOf(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getSku())+".jpg";
-        return new File(path, imageFileName);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
@@ -273,24 +294,84 @@ public class GameItemPicker extends Activity {
             setNextItem();
         }
     }
+*/
+
+    public void addPhoto(View view){
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        startActivityForResult(intent, CAPTURE_IMAGE_THUMBNAIL_ACTIVITY_REQUEST_CODE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //Check that request code matches ours:
+        if (requestCode == CAPTURE_IMAGE_THUMBNAIL_ACTIVITY_REQUEST_CODE)
+        {
+            //Check if data in not null and extract the Bitmap:
+            if (data != null && data.getExtras() != null)
+            {
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException ex) {
+                    // Error occurred while creating the File
+                }
+                if(photoFile!=null) {
+                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    try {
+                        ExifInterface ei = new ExifInterface(photoFile.getAbsolutePath());
+                        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+                        switch (orientation) {
+                            case ExifInterface.ORIENTATION_ROTATE_90:
+                                bitmap = rotateImage(bitmap, 90);
+                                break;
+                            case ExifInterface.ORIENTATION_ROTATE_180:
+                                bitmap = rotateImage(bitmap, 180);
+                                break;
+                            case ExifInterface.ORIENTATION_ROTATE_270:
+                                bitmap = rotateImage(bitmap, 270);
+                                break;
+                        }
+                        FileOutputStream out = new FileOutputStream(photoFile);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                        out.flush();
+                        out.close();
+                        tryLoadImage(String.valueOf(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getSku()) + ".jpg");
+                    } catch (Exception e) {
+                        //error
+                    }
+                }
+            }
+        }
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String imageFileName = String.valueOf(rack.getShelves().get(shelfIndex).getItems().get(itemIndex).getSku())+".jpg";
+        return new File(path, imageFileName);
+    }
 
     private void tryLoadImage(String imageFileName){
         if (path != null) {
             File file = new File(path, imageFileName);
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-            RelativeLayout.LayoutParams.WRAP_CONTENT,
-            RelativeLayout.LayoutParams.WRAP_CONTENT);
+
             if(file.exists()){
-                view.setImageBitmap( decodeSampledBitmapFromResource(file.getAbsolutePath(), imageWidth/2, imageWidth/2));
-                view.setPadding(10, 10, 10, 10);
-                lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                view.setImageBitmap(decodeSampledBitmapFromResource(file.getAbsolutePath(), imageWidth, imageWidth));
+               // view.setImageBitmap( BitmapFactory.decodeFile(file.getAbsolutePath()));
+                viewCamera.setVisibility(View.INVISIBLE);
+                view.setVisibility(View.VISIBLE);
+                photoHolder.setEnabled(false);
             } else {
-                view.setImageResource(R.drawable.camera);
-                view.setPadding(0, 10, 10, 0);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                view.setVisibility(View.INVISIBLE);
+                viewCamera.setVisibility(View.VISIBLE);
+                photoHolder.setEnabled(true);
             }
-            view.setLayoutParams(lp);
         }
     }
 
