@@ -94,7 +94,7 @@ public class GameRestocker extends Activity {
 
                                 TextView inventory = new TextView(this);
                                 inventory.setText(String.valueOf(item.getInventory()));
-                                inventory.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.10f));
+                                inventory.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.08f));
                                 inventory.setPadding(1, 0, 0, 0);
                                 inventory.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                                         getResources().getDimension(R.dimen.tableText));
@@ -106,7 +106,7 @@ public class GameRestocker extends Activity {
 
 
                                 RelativeLayout rel1 = new RelativeLayout(this);
-                                rel1.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.05f));
+                                rel1.setLayoutParams(new TableRow.LayoutParams(0, name.getLineHeight()*2, 0.09f));
                                 LinearLayout lin1 = new LinearLayout(this);
                                 lin1.setWeightSum(1f);
                                 lin1.setOrientation(LinearLayout.VERTICAL);
@@ -143,12 +143,12 @@ public class GameRestocker extends Activity {
 
 
                                 RelativeLayout relempty = new RelativeLayout(this);
-                                relempty.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.05f));
+                                relempty.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.03f));
                                 newRow.addView(relempty);
 
 
                                 RelativeLayout rel2 = new RelativeLayout(this);
-                                rel2.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.05f));
+                                rel2.setLayoutParams(new TableRow.LayoutParams(0, name.getLineHeight()*2, 0.09f));
                                 LinearLayout lin2 = new LinearLayout(this);
                                 lin2.setWeightSum(1f);
                                 lin2.setOrientation(LinearLayout.VERTICAL);
@@ -186,7 +186,7 @@ public class GameRestocker extends Activity {
 
 
                                 RelativeLayout relempty2 = new RelativeLayout(this);
-                                relempty2.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.05f));
+                                relempty2.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.01f));
                                 newRow.addView(relempty2);
 
 

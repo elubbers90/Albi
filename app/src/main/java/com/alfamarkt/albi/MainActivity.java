@@ -194,6 +194,32 @@ public class MainActivity extends Activity{
         return shelf;
     }
 
+    public StorePlanogram parseStoreWithInventory(List<List<String>> xml){
+        StorePlanogram store = new StorePlanogram(0);
+        store.setChecked(false);
+        List<Rack> racks = new ArrayList<Rack>();
+        List<Shelf> shelves = new ArrayList<Shelf>();
+        List<Item> items = new ArrayList<Item>();
+        // skip row 1, does not contain item
+        for(int i=1;i<xml.size();i++){
+            List<String> row = xml.get(i);
+            String infoKey = row.get(3);
+            if(!infoKey.equals("") && !infoKey.replace(" ","").equals("")) {
+                Item item = new Item(items.size());
+                item.setSku(Integer.parseInt(row.get(0).replace(" ", "")));
+                item.setDescription(row.get(1));
+                item.setInventory(Integer.parseInt(row.get(2).replace(" ", "")));
+                String[] split = infoKey.split("-");
+                if(split.length>0){
+                   // rack-shelf-holenumber-T/F-Position-Sequence-width-depth-height-minimum display
+                   // 018 -01   -01        -T  -A       -01      -02   -04   -01    -002
+                }
+            }
+        }
+        store.setRacks(racks);
+        return store;
+    }
+
     public List<List<String>> loadXML(String inputFile) throws IOException {
         List<List<String>> result = new ArrayList<List<String>>();
         File sdcard = Environment.getExternalStoragePublicDirectory(
@@ -333,6 +359,8 @@ public class MainActivity extends Activity{
             inventory = parseInventory(inventoryList);
             List<List<String>> result = loadXML("planogram.xls");
             StorePlanogram newStore = parseXML(result);
+            //List<List<String>> result = loadXML("newPlanogram.xlsx");
+            //StorePlanogram newStore = parseStoreWithInventory(result);
             store = combineStores(store,newStore);
             storeString = store.toString();
             SharedPreferences.Editor editor = sharedPref.edit();

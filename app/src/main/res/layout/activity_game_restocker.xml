@@ -106,14 +106,14 @@
             android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:weightSum="1">
+           <RelativeLayout
+                android:layout_height="fill_parent"
+                android:layout_width="0dip"
+                android:layout_weight="0.01"></RelativeLayout>
             <RelativeLayout
                 android:layout_height="fill_parent"
                 android:layout_width="0dip"
-                android:layout_weight="0.05"></RelativeLayout>
-            <RelativeLayout
-                android:layout_height="fill_parent"
-                android:layout_width="0dip"
-                android:layout_weight="0.90">
+                android:layout_weight="0.98">
                 <ScrollView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
@@ -150,10 +150,10 @@
                     </TableLayout>
                 </ScrollView>
             </RelativeLayout>
-            <RelativeLayout
+           <RelativeLayout
                 android:layout_height="fill_parent"
                 android:layout_width="0dip"
-                android:layout_weight="0.05"></RelativeLayout>
+                android:layout_weight="0.01"></RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 

@@ -316,21 +316,7 @@ public class GameItemPicker extends Activity {
                 }
                 if(photoFile!=null) {
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                    try {
-                        ExifInterface ei = new ExifInterface(photoFile.getAbsolutePath());
-                        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-
-                        switch (orientation) {
-                            case ExifInterface.ORIENTATION_ROTATE_90:
-                                bitmap = rotateImage(bitmap, 90);
-                                break;
-                            case ExifInterface.ORIENTATION_ROTATE_180:
-                                bitmap = rotateImage(bitmap, 180);
-                                break;
-                            case ExifInterface.ORIENTATION_ROTATE_270:
-                                bitmap = rotateImage(bitmap, 270);
-                                break;
-                        }
+                    try{
                         FileOutputStream out = new FileOutputStream(photoFile);
                         bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
                         out.flush();
@@ -362,11 +348,30 @@ public class GameItemPicker extends Activity {
             File file = new File(path, imageFileName);
 
             if(file.exists()){
-                view.setImageBitmap(decodeSampledBitmapFromResource(file.getAbsolutePath(), imageWidth, imageWidth));
-               // view.setImageBitmap( BitmapFactory.decodeFile(file.getAbsolutePath()));
-                viewCamera.setVisibility(View.INVISIBLE);
-                view.setVisibility(View.VISIBLE);
-                photoHolder.setEnabled(false);
+                try {
+                    Bitmap bitmap = decodeSampledBitmapFromResource(file.getAbsolutePath(), imageWidth, imageWidth);
+                    ExifInterface ei = new ExifInterface(file.getAbsolutePath());
+                    int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+                    switch (orientation) {
+                        case ExifInterface.ORIENTATION_ROTATE_90:
+                            bitmap = rotateImage(bitmap, 90);
+                            break;
+                        case ExifInterface.ORIENTATION_ROTATE_180:
+                            bitmap = rotateImage(bitmap, 180);
+                            break;
+                        case ExifInterface.ORIENTATION_ROTATE_270:
+                            bitmap = rotateImage(bitmap, 270);
+                            break;
+                    }
+                    view.setImageBitmap(bitmap);
+                    // view.setImageBitmap( BitmapFactory.decodeFile(file.getAbsolutePath()));
+                    viewCamera.setVisibility(View.INVISIBLE);
+                    view.setVisibility(View.VISIBLE);
+                    photoHolder.setEnabled(false);
+                } catch (IOException e){
+                    //
+                }
             } else {
                 view.setVisibility(View.INVISIBLE);
                 viewCamera.setVisibility(View.VISIBLE);
