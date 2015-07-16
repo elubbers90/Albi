@@ -211,13 +211,51 @@ public class MainActivity extends Activity{
                 item.setInventory(Integer.parseInt(row.get(2).replace(" ", "")));
                 String[] split = infoKey.split("-");
                 if(split.length>0){
-                   // rack-shelf-holenumber-T/F-Position-Sequence-width-depth-height-minimum display
-                   // 018 -01   -01        -T  -A       -01      -02   -04   -01    -002
+                    // rack-shelf-holenumber-T/F-Position-Sequence-width-depth-height-minimum display
+                    // 018 -01   -01        -T  -A       -01      -02   -04   -01    -002
+                    int racknumber = Integer.parseInt(split[0].replace(" ", ""));
+                    Rack rack = getRack(racks, racknumber);
+                    if(rack==null){
+                        rack = new Rack(racks.size());
+                        rack.setNumber(racknumber);
+                        rack.setChecked(false);
+                        rack.setShelves(new ArrayList<Shelf>());
+                        racks.add(rack);
+                    }
+                    int shelfnumber = Integer.parseInt(split[1].replace(" ", ""));
+                    Shelf shelf = getShelf(rack.getShelves(), shelfnumber);
+                    if(shelf==null){
+                        shelf = new Shelf(shelves.size());
+                        shelf.setNumber(shelfnumber);
+                        rack.addShelf(shelf);
+                        shelves.add(shelf);
+                    }
+                    item.setNoUrut(Integer.parseInt(split[5].replace(" ", "")));
+                    shelf.addItem(item);
+                    items.add(item);
                 }
             }
         }
         store.setRacks(racks);
         return store;
+    }
+
+    public Rack getRack(List<Rack> racks, int number){
+        for(int i=0;i<racks.size();i++){
+            if(racks.get(i).getNumber()==number){
+                return racks.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Shelf getShelf(List<Shelf> shelves, int number){
+        for(int i=0;i<shelves.size();i++){
+            if(shelves.get(i).getNumber()==number){
+                return shelves.get(i);
+            }
+        }
+        return null;
     }
 
     public List<List<String>> loadXML(String inputFile) throws IOException {
@@ -359,7 +397,7 @@ public class MainActivity extends Activity{
             inventory = parseInventory(inventoryList);
             List<List<String>> result = loadXML("planogram.xls");
             StorePlanogram newStore = parseXML(result);
-            //List<List<String>> result = loadXML("newPlanogram.xlsx");
+            //List<List<String>> result = loadXML("planogram.csv");
             //StorePlanogram newStore = parseStoreWithInventory(result);
             store = combineStores(store,newStore);
             storeString = store.toString();
