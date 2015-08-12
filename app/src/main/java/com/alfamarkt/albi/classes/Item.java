@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Erik on 5/7/2015.
  */
-public class Item {
+public class Item implements Comparable<Item> {
     public int id;
     public int hole;
     public int subDept;
@@ -334,5 +334,10 @@ public class Item {
             items.add(item);
         }
         return items;
+    }
+
+    @Override
+    public int compareTo(Item item) {
+        return noUrut > item.getNoUrut() ? +1 : noUrut < item.getNoUrut() ? -1 : 0;
     }
 }

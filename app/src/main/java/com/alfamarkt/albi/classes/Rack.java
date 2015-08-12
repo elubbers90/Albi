@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Erik on 5/7/2015.
  */
-public class Rack {
+public class Rack implements Comparable<Rack>{
     public int id;
     public int number;
     public String type;
@@ -131,4 +131,8 @@ public class Rack {
         return null;
     }
 
+    @Override
+    public int compareTo(Rack rack) {
+        return number > rack.getNumber() ? +1 : number < rack.getNumber() ? -1 : 0;
+    }
 }

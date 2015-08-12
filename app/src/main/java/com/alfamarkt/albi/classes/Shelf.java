@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Erik on 5/7/2015.
  */
 
-public class Shelf {
+public class Shelf implements Comparable<Shelf>  {
     public int id;
     public int number;
     public List<Item> items;
@@ -106,4 +106,8 @@ public class Shelf {
         return null;
     }
 
+    @Override
+    public int compareTo(Shelf shelf) {
+        return number > shelf.getNumber() ? +1 : number < shelf.getNumber() ? -1 : 0;
+    }
 }
